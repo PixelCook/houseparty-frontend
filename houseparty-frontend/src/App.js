@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Signin from './modules/Signin'
 import Login from './modules/Login'
+import LogOut from './modules/LogOut';
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,6 +16,7 @@ function App() {
       <Router>
         <Switch>
           <Route path='/login' component={Login} />
+          <Route path='/logout' component={LogOut} />
           <Route path='/signin' component={Signin} />
         </Switch>
 
