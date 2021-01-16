@@ -1,41 +1,21 @@
 import React from "react";
 import "../CSS/home.css";
-import startparty from "../DesignImages/2.svg";
-import profile from "../DesignImages/3.svg";
-import background from "../DesignImages/1.svg";
+import Mainpage from "../modules/Mainpage"
+import StartParty from "../modules/StartParty"
+import JoinParty from "../modules/JoinParty"
+import Profile from "../modules/Profile"
 
-export default function homeRender() {
+const Home = () => {
   return (
     <>
       <div className="main">
-        <div
-          className="background"
-          style={{
-            backgroundImage: `url(${background})`,
-            backgroundRepeat: "no-repeat",
-            height: "100vh",
-            backgroundSize: "100% 100%",
-          }}
-        ></div>
-        <div
-          className="background"
-          style={{
-            backgroundImage: `url(${startparty})`,
-            backgroundRepeat: "no-repeat",
-            height: "100vh",
-            backgroundSize: "100% 100%",
-          }}
-        ></div>
-        <div
-          className="background"
-          style={{
-            backgroundImage: `url(${profile})`,
-            backgroundRepeat: "no-repeat",
-            height: "100vh",
-            backgroundSize: "100% 100%",
-          }}
-        ></div>
+        <Mainpage />
+        <StartParty/>
+        <JoinParty/>
+        <Profile/>
       </div>
     </>
   );
 }
+
+export default Home
