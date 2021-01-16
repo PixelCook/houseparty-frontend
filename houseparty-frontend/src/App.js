@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+
+import home from './pages/home'
 import Signin from './modules/Signin'
 import Login from './modules/Login'
 import LogOut from './modules/LogOut';
@@ -7,7 +9,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  Redirect
 } from "react-router-dom";
 
 function App() {
@@ -18,6 +21,7 @@ function App() {
           <Route path='/login' component={Login} />
           <Route path='/logout' component={LogOut} />
           <Route path='/signin' component={Signin} />
+          <Redirect to='/home' />
         </Switch>
 
       </Router>
