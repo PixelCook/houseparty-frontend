@@ -1,0 +1,10 @@
+html, body {
+    margin:0px;
+    height:100%;
+    background-color: #160A41;
+  }
+
+.background{
+    outline: none;
+    padding: 0px;
+}
