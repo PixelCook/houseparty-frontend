@@ -2,8 +2,6 @@ import "./App.css";
 import React from "react";
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Home from "./pages/homepage"
-
-import home from './pages/home'
 import Signin from './modules/Signin'
 import Login from './modules/Login'
 import LogOut from './modules/LogOut';
