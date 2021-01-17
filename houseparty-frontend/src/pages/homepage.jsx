@@ -1,27 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../CSS/home.css";
 import Mainpage from "../modules/Mainpage";
 import StartParty from "../modules/StartParty";
 import JoinParty from "../modules/JoinParty";
 import Profile from "../modules/Profile";
 
-
-
-
-
 const Home = () => {
   //  Hooks
   const [auth, setAuth] = useState(false);
 
-
   // AuthCheck
   const checkAuth = () => {
-    const auth = localStorage.getItem('token')
-    if (auth){
-      setAuth(true)
+    const auth = localStorage.getItem("token");
+    if (auth) {
+      setAuth(true);
     }
-  }
+  };
 
+  useEffect(() => {
+    checkAuth();
+  }, []);
 
   // Render
 
