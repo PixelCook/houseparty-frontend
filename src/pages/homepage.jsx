@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-import '../CSS/home.css';
-import Mainpage from '../modules/Mainpage';
-import StartParty from '../modules/StartParty';
-import JoinParty from '../modules/JoinParty';
-import Profile from '../modules/Profile';
-import SpotifyLogin from '../modules/SpotifyLogin';
-=======
 import React, {useContext} from "react";
 import "../CSS/home.css";
 import Mainpage from "../modules/Mainpage"
@@ -14,8 +5,7 @@ import StartParty from "../modules/StartParty"
 import JoinParty from "../modules/JoinParty"
 import Profile from "../modules/Profile"
 import AuthContext from "../context/userContext" 
-
->>>>>>> navbar
+import SpotifyLogin from "../modules/SpotifyLogin"
 
 const Home = () => {
   const { user } = useContext(AuthContext)
@@ -39,22 +29,13 @@ const Home = () => {
     <>
       <div className='main'>
         <Mainpage />
-<<<<<<< HEAD
         <StartParty />
         <JoinParty />
         <Profile />
         <SpotifyLogin />
-=======
->>>>>>> navbar
       </div>
     </>
   );
 };
-<<<<<<< HEAD
 
 export default Home;
-=======
-
-export default Home;
-
->>>>>>> navbar
