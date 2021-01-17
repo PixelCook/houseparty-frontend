@@ -5,9 +5,27 @@ import StartParty from "../modules/StartParty";
 import JoinParty from "../modules/JoinParty";
 import Profile from "../modules/Profile";
 
-const Home = () => {
-  const [auth, setAuth] = useState("");
 
+
+
+
+const Home = () => {
+  //  Hooks
+  const [auth, setAuth] = useState(false);
+
+
+  // AuthCheck
+  const checkAuth = () => {
+    const auth = localStorage.getItem('token')
+    if (auth){
+      setAuth(true)
+    }
+  }
+
+
+  // Render
+
+  // AuthRender
   if (auth) {
     return (
       <div>
@@ -17,6 +35,8 @@ const Home = () => {
       </div>
     );
   }
+
+  // NeedsSignin Render
   return (
     <>
       <div className="main">
