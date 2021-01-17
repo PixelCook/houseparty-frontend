@@ -8,6 +8,7 @@ import UserContext from "./context/userContext";
 import jwt_decode from "jwt-decode";
 import Navbar from "./modules/Navbar";
 
+import jwt_decode from "jwt-decode";
 import {
   BrowserRouter as Router,
   Switch,
@@ -30,7 +31,6 @@ function App() {
   return (
     <div className='App'>
       <UserContext.Provider value={{ user, setUser }}>
-        <Navbar />
         <Router>
           <Switch>
             <Route path='/connect' />
@@ -38,6 +38,7 @@ function App() {
             <Route path='/logout' component={LogOut} />
             <Route path='/signin' component={Signin} />
             <Route path='/home' component={Home} />
+            <Route path='/start-party' component={StartParty} />
             <Redirect to='/home' />
           </Switch>
         </Router>
