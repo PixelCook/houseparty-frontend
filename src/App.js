@@ -6,6 +6,7 @@ import Login from './modules/Login'
 import LogOut from './modules/LogOut';
 import UserContext from './context/userContext'
 import jwt_decode from "jwt-decode";
+import Navbar from "./modules/Navbar"
 
 import {
   BrowserRouter as Router,
@@ -30,6 +31,7 @@ function App() {
   return (
     <div className="App">
       <UserContext.Provider value={{ user, setUser }}>
+        <Navbar />
         <Router>
           <Switch>
             <Route path='/login' component={Login} />
