@@ -31,6 +31,7 @@ function App() {
   return (
     <div className='App'>
       <UserContext.Provider value={{ user, setUser }}>
+        <Navbar/>
         <Router>
           <Switch>
             <Route path='/connect' />
