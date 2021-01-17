@@ -7,7 +7,7 @@ import LogOut from "./modules/LogOut";
 import UserContext from "./context/userContext";
 import jwt_decode from "jwt-decode";
 import Navbar from "./modules/Navbar";
-import StartParty from "../src/modules/StartParty"
+import StartParty from "../src/modules/StartParty";
 import {
   BrowserRouter as Router,
   Switch,
@@ -33,11 +33,11 @@ function App() {
         <Navbar />
         <Router>
           <Switch>
+            <Route path="/home" component={Home} />
             <Route path="/connect" />
             <Route path="/login" component={Login} />
             <Route path="/logout" component={LogOut} />
             <Route path="/signin" component={Signin} />
-            <Route path="/home" component={Home} />
             <Route path="/start-party" component={StartParty} />
             <Redirect to="/home" />
           </Switch>
