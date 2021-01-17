@@ -6,6 +6,8 @@ import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
+import React, { useContext } from 'react'
+import UserContext from '../context/UserContext'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,22 +64,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchAppBar() {
-  //  Hooks
-  const [auth, setAuth] = useState(false);
-  const classes = useStyles();
-  const checkAuth = () => {
-    const auth = localStorage.getItem("token");
-    if (auth) {
-      setAuth(true);
-    }
-  };
+export default function SearchAppBar() { 
+    const { user } = useContext(UserContext)
 
-  useEffect(() => {
-    checkAuth();
-  }, []);
 
-  if (auth) {
+  if (user) {
     return (
       <div className={classes.root}>
         <AppBar position="static" style={{backgroundColor: "transparent"}}>
