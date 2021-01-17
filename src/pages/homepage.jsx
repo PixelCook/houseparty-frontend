@@ -1,15 +1,14 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import "../CSS/home.css";
-import Mainpage from "../modules/Mainpage"
-import StartParty from "../modules/StartParty"
-import JoinParty from "../modules/JoinParty"
-import Profile from "../modules/Profile"
-import AuthContext from "../context/userContext" 
-import SpotifyLogin from "../modules/SpotifyLogin"
+import Mainpage from "../modules/Mainpage";
+import StartParty from "../modules/StartParty";
+import JoinParty from "../modules/JoinParty";
+import Profile from "../modules/Profile";
+import AuthContext from "../context/userContext";
+import SpotifyLogin from "../modules/SpotifyLogin";
 
 const Home = () => {
-  const { user } = useContext(AuthContext)
-
+  const { user } = useContext(AuthContext);
 
   // Render
 
@@ -20,6 +19,7 @@ const Home = () => {
         <StartParty />
         <JoinParty />
         <Profile />
+        <SpotifyLogin />
       </div>
     );
   }
@@ -27,12 +27,8 @@ const Home = () => {
   // NeedsSignin Render
   return (
     <>
-      <div className='main'>
+      <div className="main">
         <Mainpage />
-        <StartParty />
-        <JoinParty />
-        <Profile />
-        <SpotifyLogin />
       </div>
     </>
   );
