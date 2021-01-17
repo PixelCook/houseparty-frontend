@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -6,8 +6,7 @@ import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
-import React, { useContext } from 'react'
-import UserContext from '../context/UserContext'
+import UserContext from "../context/UserContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -64,14 +63,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchAppBar() { 
-    const { user } = useContext(UserContext)
-
+export default function SearchAppBar() {
+  const classes = useStyles();
+  const { user } = useContext(UserContext);
 
   if (user) {
     return (
       <div className={classes.root}>
-        <AppBar position="static" style={{backgroundColor: "transparent"}}>
+        <AppBar position="static" style={{ backgroundColor: "transparent" }}>
           <Toolbar>
             <IconButton
               edge="start"
@@ -103,7 +102,7 @@ export default function SearchAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" style={{backgroundColor: "transparent"}}>
+      <AppBar position="static" style={{ backgroundColor: "transparent" }}>
         <Toolbar>
           <IconButton
             edge="start"

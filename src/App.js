@@ -7,8 +7,7 @@ import LogOut from "./modules/LogOut";
 import UserContext from "./context/userContext";
 import jwt_decode from "jwt-decode";
 import Navbar from "./modules/Navbar";
-
-import jwt_decode from "jwt-decode";
+import StartParty from "../src/modules/StartParty"
 import {
   BrowserRouter as Router,
   Switch,
@@ -29,18 +28,18 @@ function App() {
   }, []);
 
   return (
-    <div className='App'>
+    <div className="App">
       <UserContext.Provider value={{ user, setUser }}>
-        <Navbar/>
+        <Navbar />
         <Router>
           <Switch>
-            <Route path='/connect' />
-            <Route path='/login' component={Login} />
-            <Route path='/logout' component={LogOut} />
-            <Route path='/signin' component={Signin} />
-            <Route path='/home' component={Home} />
-            <Route path='/start-party' component={StartParty} />
-            <Redirect to='/home' />
+            <Route path="/connect" />
+            <Route path="/login" component={Login} />
+            <Route path="/logout" component={LogOut} />
+            <Route path="/signin" component={Signin} />
+            <Route path="/home" component={Home} />
+            <Route path="/start-party" component={StartParty} />
+            <Redirect to="/home" />
           </Switch>
         </Router>
       </UserContext.Provider>
