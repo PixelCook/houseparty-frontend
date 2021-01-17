@@ -4,9 +4,12 @@ import Home from "./pages/homepage"
 import Signin from './modules/Signin'
 import Login from './modules/Login'
 import LogOut from './modules/LogOut';
-import UserContext from './context/userContext'
-import jwt_decode from "jwt-decode";
+import StartParty from './modules/StartParty'
 
+
+import UserContext from './context/userContext'
+
+import jwt_decode from "jwt-decode";
 import {
   BrowserRouter as Router,
   Switch,
@@ -36,6 +39,7 @@ function App() {
             <Route path='/logout' component={LogOut} />
             <Route path='/signin' component={Signin} />
             <Route path='/home' component={Home} />
+            <Route path='/start-party' component={StartParty} />
             <Redirect to='/home' />
           </Switch>
 
