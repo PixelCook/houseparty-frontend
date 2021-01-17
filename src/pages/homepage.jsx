@@ -10,9 +10,6 @@ import SpotifyLogin from "../modules/SpotifyLogin"
 const Home = () => {
   const { user } = useContext(AuthContext)
 
-
-  // Render
-
   // AuthRender
   if (user) {
     return (
