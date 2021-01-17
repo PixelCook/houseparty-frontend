@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&family=Roboto:wght@100;400&family=Spartan:wght@900&display=swap" rel="stylesheet">');
+
+
+h1{
+  font-family: 'Spartan', sans-serif;
+  font-size: 60px;
+}
+
+h2 {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 100;
+  font-size: 13px;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+
+}
+
+svg {
+  stroke: transparent;
+  stroke-width: 0px;
+}
