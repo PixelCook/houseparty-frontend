@@ -19,7 +19,7 @@ export default function Mainpage() {
         <Grid item xs={12}>
           <h1 style={{ color: "#F90040" }}>HouseParty</h1>
           <div className="signin">
-          <Button   variant="contained" color="primary">Sign Up</Button>
+          <a href="signup"><Button variant="contained" color="primary">Sign Up</Button></a>
           </div>
         </Grid>
         <Grid item xs={12}>

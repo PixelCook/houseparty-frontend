@@ -4,6 +4,7 @@ import Home from "./pages/homepage";
 import Signin from "./modules/Signin";
 import Login from "./modules/Login";
 import LogOut from "./modules/LogOut";
+import Navbar from "../src/modules/Navbar"
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,14 +16,16 @@ import {
 function App() {
   return (
     <div className="App">
-      <Router>
+      <Navbar/>
+      <Home />
+      {/* <Router>
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/logout" component={LogOut} />
           <Route path="/signin" component={Signin} />
-          <Redirect to="/home" />
+          <Redirect to="/home" component={Home}/>
         </Switch>
-      </Router>
+      </Router> */}
     </div>
   );
 }
