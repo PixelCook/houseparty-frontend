@@ -16,17 +16,6 @@ import {
 } from "react-router-dom";
 
 function App() {
-<<<<<<< HEAD
-  return <>
-  <Router>
-    <Switch>
-      <Route>
-        <Home/>
-      </Route>
-    </Switch>
-  </Router>
-  </>;
-=======
   return (
     <div className="App">
       <Router>
@@ -40,7 +29,6 @@ function App() {
       </Router>
     </div>
   );
->>>>>>> 2e366a9ce4831600f13b938577aff2a8583ce02a
 }
 
 export default App;
