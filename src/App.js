@@ -1,32 +1,31 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
-import Home from "./pages/homepage"
-import Signin from './modules/Signin'
-import Login from './modules/Login'
-import LogOut from './modules/LogOut';
-import UserContext from './context/userContext'
+import Home from "./pages/homepage";
+import Signin from "./modules/Signin";
+import Login from "./modules/Login";
+import LogOut from "./modules/LogOut";
+import UserContext from "./context/userContext";
 import jwt_decode from "jwt-decode";
-import Navbar from "./modules/Navbar"
+import Navbar from "./modules/Navbar";
 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link,
-  Redirect
+  Redirect,
 } from "react-router-dom";
 
 function App() {
-  const [user, setUser] = useState()
+  const [user, setUser] = useState();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
       const decoded = jwt_decode(token);
-      setUser(decoded)
-
+      setUser(decoded);
     }
-  }, [])
+  }, []);
 
   return (
     <div className="App">
@@ -34,13 +33,12 @@ function App() {
         <Navbar />
         <Router>
           <Switch>
-            <Route path='/login' component={Login} />
-            <Route path='/logout' component={LogOut} />
-            <Route path='/signin' component={Signin} />
-            <Route path='/home' component={Home} />
-            <Redirect to='/home' />
+            <Route path="/home" component={Home} />
+            <Route path="/login" component={Login} />
+            <Route path="/logout" component={LogOut} />
+            <Route path="/signin" component={Signin} />
+            <Redirect to="/home" />
           </Switch>
-
         </Router>
       </UserContext.Provider>
     </div>
