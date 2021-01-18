@@ -9,17 +9,30 @@
 }
 
 .startaparty-msg{
-    width: 52%;
-    margin-left: 10.2rem;
+    width: 30%;
+    margin-left: 11rem;
     color: #61063F
 }
 
 .startaparty-when{
+    font-size: 16px;
     color: #A60744;
-    margin-left: 4.5rem;
+    margin-left: 4.7rem;
 }
 
 .startaparty-form{
     margin-left: 8rem;
+
+}
+
+.createdParty{
+    margin-left: 7rem;
+    margin-top: 1rem;
+    width: 50%;
+    color: #170940
+}
+
+.partyId {
+    font-weight: bold;
 
 }
