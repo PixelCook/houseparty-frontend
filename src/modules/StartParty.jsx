@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "../CSS/startparty.css";
 import startparty from "../DesignImages/2.svg";
-import { Grid, Paper, Button } from '@material-ui/core';
+import { Grid, Button } from '@material-ui/core';
+import '../CSS/startparty.css'
 
 
 export default function StartParty() {
@@ -15,34 +15,37 @@ export default function StartParty() {
   }
 
   const handleCreateParty = (e) => {
-    console.log('party created for', selectedDate);
+    e.preventDefault()
 
   }
 
   return (
-    <div
-      className="background"
-      style={{
-        backgroundImage: `url(${startparty})`,
-        backgroundRepeat: "no-repeat",
-        height: "100vh",
-        backgroundSize: "100% 100%",
-      }}
-    >
-      <h1 className="startaparty" style={{ color: "#F90040" }}>Throw A Party</h1>
-      <p>A party always starts when you're here, take the lead</p>
-      <Grid container justify="space-around">
-        <Paper>
-          <h3>When is your Party happening?</h3>
-          <input type="date" id="start" name="trip-start"
-            value={selectedDate}
-            min={date.toISOString().split('T')[0]}
-            onChange={handleDateChange}
-          />
+    <Grid container justify="space-around" className='startaparty-wrapper'>
+      <div
+        className="background"
+        style={{
+          backgroundImage: `url(${startparty})`,
+          backgroundRepeat: "no-repeat",
+          height: "100vh",
+          backgroundSize: "100% 100%",
+        }}
+      ><div>
+          <h1 className="startaparty" style={{ color: "#F90040" }}>Throw A Party</h1>
+          <p className="startaparty-msg" > A party always starts when you're here, take the lead</p>
+        </div>
+        <h3 className="startaparty-when">When is your Party happening?</h3>
+        <div className="startaparty-form">
+          <Grid item xs={11}>
+            <input type="date" id="start" name="trip-start"
+              value={selectedDate}
+              min={date.toISOString().split('T')[0]}
+              onChange={handleDateChange}
+            />
+          </Grid>
           <Button variant="contained" color="secondary" onClick={handleCreateParty}>
             Create Party</Button>
-        </Paper>
-      </Grid>
-    </div>
+        </div>
+      </div>
+    </Grid>
   );
 }
