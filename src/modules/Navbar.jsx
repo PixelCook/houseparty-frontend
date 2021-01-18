@@ -68,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchAppBar() {
   const [searchValue, setSearchValue] = useState("");
+  const [searchResults, setSearchResults] = useState([])
   const [anchorEl, setAnchorEl] = useState(null);
   const { user } = useContext(UserContext);
   const classes = useStyles();
@@ -85,9 +86,22 @@ export default function SearchAppBar() {
     console.log(searchValue);
   };
 
-  const handleSearchSubmit = async () => {
-    const url = `https://api.spotify.com/v1/search${searchValue}`;
-  };
+  const handleSearchSubmit = (e) => {
+    e.preventDefault()
+    const authToken = localStorage.get('spotifyToken')
+    const url = `https://api.spotify.com/v1/search/${searchValue}`;
+    axios.get(url, {
+      headers : {
+        'Authorization': `Bearer ${authToken}`
+      }
+    })
+    .then(res => {
+      console.log(res.data)
+      console.log(res.status)
+      const searchresults = res.data;
+      setSearchResults(searchresults) 
+    })
+  }
 
   if (user) {
     return (
@@ -120,6 +134,7 @@ export default function SearchAppBar() {
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
+              <form onSubmit={handleSearchSubmit}>
               <InputBase
                 placeholder="Search…"
                 classes={{
@@ -128,8 +143,11 @@ export default function SearchAppBar() {
                 }}
                 inputProps={{ "aria-label": "search" }}
                 onChange={handleSearch}
-                onSubmit={handleSearchSubmit}
               />
+              </form>
+              <ul>
+              {searchResults.map(result => <li>{result}</li>)}
+              </ul>
             </div>
           </Toolbar>
         </AppBar>
