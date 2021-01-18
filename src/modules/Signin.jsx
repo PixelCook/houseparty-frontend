@@ -14,7 +14,7 @@ import { signUpUrl } from "../utils/config";
 import axios from "axios";
 
 export default function Signin() {
-  const [signUpValues, setSignUpValues] = useState({});
+  const [signUpValues, setSignUpValues] = useState({password1: ""});
 
   const {
     REACT_APP_CLIENT_ID,
@@ -128,6 +128,9 @@ export default function Signin() {
               </FormControl>
               {signUpValues.password1 !== signUpValues.password2 && (
                 <p className='error'>Passwords don't match</p>
+              )}
+              {signUpValues.password1.length < 6 && (
+                <p className='error'>Password must be at least 6 characters</p>
               )}
             </Grid>
           </div>

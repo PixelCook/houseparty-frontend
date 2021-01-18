@@ -131,7 +131,7 @@ export default function SearchAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" style={{ backgroundColor: "transparent" }}>
+      <AppBar position="sticky" style={{ backgroundColor: "transparent" }}>
         <Toolbar>
           <IconButton
             edge="start"
@@ -150,7 +150,7 @@ export default function SearchAppBar() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <a href="signin"><MenuItem onClick={handleClose}>SignIn</MenuItem></a>
+              <a style={{textDecoration: "none"}} href="signin"><MenuItem onClick={handleClose}>SignIn</MenuItem></a>
             </Menu>
         </Toolbar>
       </AppBar>
