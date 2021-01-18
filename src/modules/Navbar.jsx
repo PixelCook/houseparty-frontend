@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -66,7 +66,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SearchAppBar() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [searchValue, setSearchValue] = useState("")
+  const [anchorEl, setAnchorEl] = useState(null);
   const { user } = useContext(UserContext);
   const classes = useStyles();
 
@@ -79,10 +80,15 @@ export default function SearchAppBar() {
   };
 
   const handleSearch = (e) => {
-    console.log(e)
+   setSearchValue(e.target.value)
   }
 
-  if (user) {
+  const handleSearchSubmit = async () => {
+    const url = `https://api.spotify.com/v1/search${searchValue}` 
+    await 
+  }
+
+  if (!user) {
     return (
       <div className={classes.root}>
         <AppBar position="static" style={{ backgroundColor: "transparent" }}>
@@ -121,6 +127,7 @@ export default function SearchAppBar() {
                 }}
                 inputProps={{ "aria-label": "search" }}
                 onChange={handleSearch}
+                onSubmit={handleSearchSubmit}
               />
             </div>
           </Toolbar>

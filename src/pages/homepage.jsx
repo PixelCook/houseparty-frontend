@@ -13,7 +13,7 @@ const Home = () => {
   // Render
 
   // AuthRender
-  if (user) {
+  if (!user) {
     return (
       <div>
         <StartParty />
