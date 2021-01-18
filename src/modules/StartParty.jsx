@@ -1,48 +1,79 @@
-import React, { useState } from "react";
-import "../CSS/startparty.css";
+import React, { useState, useContext } from "react";
 import startparty from "../DesignImages/2.svg";
-import { Grid, Paper, Button } from '@material-ui/core';
+import { Grid, Button } from '@material-ui/core';
+import '../CSS/startparty.css'
+import userContext from '../context/userContext'
+import axios from 'axios'
+import { startPartyUrl } from '../utils/config'
 
 
 export default function StartParty() {
   const date = new Date();
+  const [startPartyValues, setStartPartyValues] = useState({})
   const [selectedDate, setSelectedDate] = useState(date.toISOString().split('T')[0]);
+  const [partyCreated, setPartyCreated] = useState('')
+
+  const { user } = useContext(userContext)
 
 
   const handleDateChange = (e) => {
+    const startPartyValuesCopy = { ...startPartyValues }
     console.log(e.target.value);
-    setSelectedDate(e.target.value);
+    const { value, name } = e.target
+    startPartyValuesCopy['userId'] = user.id
+    startPartyValuesCopy[name] = value
+    setSelectedDate(value);
+    setStartPartyValues(startPartyValuesCopy)
+
   }
 
-  const handleCreateParty = (e) => {
-    console.log('party created for', selectedDate);
-
+  const handleCreateParty = async (e) => {
+    e.preventDefault()
+    try {
+      const response = await axios.post(startPartyUrl, startPartyValues)
+      const partyId = response.data
+      setPartyCreated(partyId)
+      console.log(partyCreated);
+    }
+    catch (err) {
+      console.log(err);
+    }
   }
 
   return (
-    <div
-      className="background"
-      style={{
-        backgroundImage: `url(${startparty})`,
-        backgroundRepeat: "no-repeat",
-        height: "100vh",
-        backgroundSize: "100% 100%",
-      }}
-    >
-      <h1 className="startaparty" style={{ color: "#F90040" }}>Throw A Party</h1>
-      <p>A party always starts when you're here, take the lead</p>
-      <Grid container justify="space-around">
-        <Paper>
-          <h3>When is your Party happening?</h3>
-          <input type="date" id="start" name="trip-start"
-            value={selectedDate}
-            min={date.toISOString().split('T')[0]}
-            onChange={handleDateChange}
-          />
+    <Grid container justify="space-around" spacing={3}>
+      <div
+        className="background"
+        style={{
+          backgroundImage: `url(${startparty})`,
+          backgroundRepeat: "no-repeat",
+          height: "100vh",
+          backgroundSize: "100% 100%",
+        }}
+      >
+        <div>
+          <h1 className="startaparty" style={{ color: "#F90040" }}>Throw A Party</h1>
+          <p className="startaparty-msg" > A party always starts when you're here, take the lead</p>
+        </div>
+        <h3 className="startaparty-when">When is your Party happening?</h3>
+        <div className="startaparty-form">
+          <Grid item xs={11}>
+            <input type="date" id="start" name="date"
+              value={selectedDate}
+              min={date.toISOString().split('T')[0]}
+              onChange={handleDateChange}
+            />
+          </Grid>
           <Button variant="contained" color="secondary" onClick={handleCreateParty}>
             Create Party</Button>
-        </Paper>
-      </Grid>
-    </div>
+        </div>
+        {partyCreated &&
+          <div className='createdParty'> You have created a party! It's ID number is
+              <div className='partyId'>
+              {partyCreated}
+            </div>
+          </div>}
+      </div>
+    </Grid >
   );
 }
