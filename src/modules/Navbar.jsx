@@ -7,6 +7,8 @@ import { fade, makeStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import UserContext from "../context/userContext";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -64,8 +66,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SearchAppBar() {
-  const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const { user } = useContext(UserContext);
+  const classes = useStyles();
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   if (user) {
     return (
@@ -77,9 +88,22 @@ export default function SearchAppBar() {
               className={classes.menuButton}
               color="inherit"
               aria-label="open drawer"
+              onClick={handleClick}
             >
               <MenuIcon />
             </IconButton>
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleClose}>Throw a Party</MenuItem>
+              <MenuItem onClick={handleClose}>Join a Party</MenuItem>
+              <MenuItem onClick={handleClose}>Logout</MenuItem>
+            </Menu>
 
             <div className={classes.search}>
               <div className={classes.searchIcon}>
@@ -109,9 +133,20 @@ export default function SearchAppBar() {
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
+            onClick={handleClick}
           >
             <MenuIcon />
-          </IconButton>
+            </IconButton>
+
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <a href="signin"><MenuItem onClick={handleClose}>SignIn</MenuItem></a>
+            </Menu>
         </Toolbar>
       </AppBar>
     </div>
