@@ -85,7 +85,7 @@ export default function SearchAppBar() {
 
   const handleSearchSubmit = async () => {
     const url = `https://api.spotify.com/v1/search${searchValue}` 
-    await 
+     
   }
 
   if (!user) {
