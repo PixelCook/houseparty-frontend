@@ -23,7 +23,7 @@ const Home = (props) => {
   // Render
 
   // AuthRender
-  if (user) {
+  if (!user) {
     return (
       <div>
         <StartParty />
