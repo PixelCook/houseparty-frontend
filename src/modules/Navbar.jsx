@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SearchAppBar() {
-  const [searchValue, setSearchValue] = useState("")
+  const [searchValue, setSearchValue] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const { user } = useContext(UserContext);
   const classes = useStyles();
@@ -80,15 +80,15 @@ export default function SearchAppBar() {
   };
 
   const handleSearch = (e) => {
-   setSearchValue(e.target.value)
-  }
+    setSearchValue(e.target.value);
+    console.log(searchValue);
+  };
 
   const handleSearchSubmit = async () => {
-    const url = `https://api.spotify.com/v1/search${searchValue}` 
-     
-  }
+    const url = `https://api.spotify.com/v1/search${searchValue}`;
+  };
 
-  if (!user) {
+  if (user) {
     return (
       <div className={classes.root}>
         <AppBar position="static" style={{ backgroundColor: "transparent" }}>
@@ -148,17 +148,19 @@ export default function SearchAppBar() {
             onClick={handleClick}
           >
             <MenuIcon />
-            </IconButton>
+          </IconButton>
 
-            <Menu
-              id="simple-menu"
-              anchorEl={anchorEl}
-              keepMounted
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
-              <a style={{textDecoration: "none"}} href="signin"><MenuItem onClick={handleClose}>SignIn</MenuItem></a>
-            </Menu>
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            <a style={{ textDecoration: "none" }} href="signin">
+              <MenuItem onClick={handleClose}>SignIn</MenuItem>
+            </a>
+          </Menu>
         </Toolbar>
       </AppBar>
     </div>
