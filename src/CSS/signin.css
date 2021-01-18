@@ -1,21 +1,19 @@
 .signup-form-wrapper{
-    /* display: block; */
-    /* border: 2px solid #170940; */
-    /* width: 20%; */
-    /* justify-items: center; */
     color: #8A83AB;
-    /* margin-left: 30%; */
     margin-top: 1rem;
 }
 
 .signup-form{
     margin-bottom: 2rem;
+        padding-left: 2rem;
     
     }
 
 
 .signup-btn{
     margin-top: 1rem;
+    margin-left: 2rem !important;
+
 }
 
 .error{

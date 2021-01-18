@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Button,
   FormControl,
@@ -7,11 +7,11 @@ import {
   FormHelperText,
   Grid,
   Paper,
-} from '@material-ui/core';
-import '../CSS/signin.css';
-import { Link } from 'react-router-dom';
-import { signUpUrl } from '../utils/config';
-import axios from 'axios';
+} from "@material-ui/core";
+import "../CSS/signin.css";
+import { Link } from "react-router-dom";
+import { signUpUrl } from "../utils/config";
+import axios from "axios";
 
 export default function Signin() {
   const [signUpValues, setSignUpValues] = useState({});
@@ -54,6 +54,7 @@ export default function Signin() {
                   onChange={handleInputChange}
                 />
                 <FormHelperText id='my-helper-text'>
+
                   We'll never share your email.
                 </FormHelperText>
               </FormControl>
@@ -66,11 +67,13 @@ export default function Signin() {
                   name='firstName'
                   id='my-input'
                   aria-describedby='my-helper-text'
+
                   onChange={handleInputChange}
                 />
               </FormControl>
             </Grid>
             <Grid item xs={12}>
+
               <FormControl className='input-field'>
                 <InputLabel htmlFor='my-input'>Last Name</InputLabel>
                 <Input
@@ -82,7 +85,7 @@ export default function Signin() {
                 />
               </FormControl>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12}>              
               <FormControl className='input-field'>
                 <InputLabel htmlFor='my-input'>Username</InputLabel>
                 <Input
@@ -103,11 +106,14 @@ export default function Signin() {
                   type='password'
                   id='my-input'
                   aria-describedby='my-helper-text'
+
                   onChange={handleInputChange}
                 />
               </FormControl>
             </Grid>
             <Grid item xs={12}>
+              
+
               <FormControl className='input-field'>
                 <InputLabel htmlFor='my-input'>Confirm Password</InputLabel>
                 <Input
@@ -116,6 +122,7 @@ export default function Signin() {
                   type='password'
                   id='my-input'
                   aria-describedby='my-helper-text'
+
                   onChange={handleInputChange}
                 />
               </FormControl>
@@ -126,12 +133,13 @@ export default function Signin() {
           </div>
           <Grid item xs={12}>
             <Button
+
               type='submit'
               variant='contained'
               color='secondary'
               className='signup-btn'
-              onClick={handleSubmit}
-            >
+              onClick={handleSubmit} 
+              >
               Sign up
             </Button>
           </Grid>
