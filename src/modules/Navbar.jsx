@@ -78,6 +78,10 @@ export default function SearchAppBar() {
     setAnchorEl(null);
   };
 
+  const handleSearch = (e) => {
+    console.log(e)
+  }
+
   if (user) {
     return (
       <div className={classes.root}>
@@ -116,6 +120,7 @@ export default function SearchAppBar() {
                   input: classes.inputInput,
                 }}
                 inputProps={{ "aria-label": "search" }}
+                onChange={handleSearch}
               />
             </div>
           </Toolbar>
