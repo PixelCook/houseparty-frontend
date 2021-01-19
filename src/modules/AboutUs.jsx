@@ -1,5 +1,5 @@
 import React from "react";
-import AboutUs from "../DesignImages/2.svg";
+import AboutUs from "../DesignImages/5.svg";
 
 export default function AboutUsFunction() {
   return (

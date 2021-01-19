@@ -1,6 +1,6 @@
 import React from "react";
 import "../CSS/home.css";
-import profile from "../DesignImages/3.svg";
+import profile from "../DesignImages/4.svg";
 
 export default function Profile() {
   return (
