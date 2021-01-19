@@ -7,6 +7,7 @@ import Profile from '../modules/Profile';
 import AuthContext from '../context/userContext';
 import SpotifyLogin from '../modules/SpotifyLogin';
 import queryString from 'query-string';
+import AboutUs from "../modules/AboutUs"
 
 const Home = (props) => {
   const { user } = useContext(AuthContext);
@@ -23,13 +24,14 @@ const Home = (props) => {
   // Render
 
   // AuthRender
-  if (!user) {
+  if (user) {
     return (
       <div>
         <StartParty />
         <JoinParty />
         <Profile />
         <SpotifyLogin />
+        <AboutUs/>
       </div>
     );
   }

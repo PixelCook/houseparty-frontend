@@ -9,7 +9,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import UserContext from "../context/userContext";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import axios from "axios"
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchAppBar() {
   const [searchValue, setSearchValue] = useState("");
-  const [searchResults, setSearchResults] = useState([])
+  const [searchResults, setSearchResults] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const { user } = useContext(UserContext);
   const classes = useStyles();
@@ -87,21 +87,26 @@ export default function SearchAppBar() {
   };
 
   const handleSearchSubmit = (e) => {
-    e.preventDefault()
-    const authToken = localStorage.get('spotifyToken')
-    const url = `https://api.spotify.com/v1/search/${searchValue}`;
-    axios.get(url, {
-      headers : {
-        'Authorization': `Bearer ${authToken}`
-      }
-    })
-    .then(res => {
-      console.log(res.data)
-      console.log(res.status)
-      const searchresults = res.data;
-      setSearchResults(searchresults) 
-    })
-  }
+    e.preventDefault();
+    const authToken = localStorage.get("spotifyToken");
+    const url = `https://api.spotify.com/v1/search?q=${searchValue}&type=track&market=US&limit=10`;
+    try {
+      axios
+        .get(url, {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
+          console.log(res.status);
+          const searchresults = res.data;
+          setSearchResults(searchresults);
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   if (user) {
     return (
@@ -135,18 +140,20 @@ export default function SearchAppBar() {
                 <SearchIcon />
               </div>
               <form onSubmit={handleSearchSubmit}>
-              <InputBase
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                inputProps={{ "aria-label": "search" }}
-                onChange={handleSearch}
-              />
+                <InputBase
+                  placeholder="Search…"
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                  inputProps={{ "aria-label": "search" }}
+                  onChange={handleSearch}
+                />
               </form>
               <ul>
-              {searchResults.map(result => <li>{result}</li>)}
+                {searchResults.map((result) => (
+                  <li>{result}</li>
+                ))}
               </ul>
             </div>
           </Toolbar>
