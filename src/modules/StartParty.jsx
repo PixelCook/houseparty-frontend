@@ -54,9 +54,9 @@ export default function StartParty() {
         }}
       >
         <div>
-          <h1 className='startaparty' style={{ color: '#F90040' }}>
+          {/* <h1 className='startaparty' style={{ color: '#F90040' }}>
             Throw A Party
-          </h1>
+          </h1> */}
           <p className='startaparty-msg'>
             {' '}
             A party always starts when you're here, take the lead
