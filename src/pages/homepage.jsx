@@ -8,6 +8,8 @@ import AuthContext from '../context/userContext';
 import SpotifyLogin from '../modules/SpotifyLogin';
 import queryString from 'query-string';
 import AboutUs from "../modules/AboutUs"
+import ReactSnapScroll from 'react-snap-scroll';
+
 
 const Home = (props) => {
   const { user } = useContext(AuthContext);
