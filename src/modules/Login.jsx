@@ -32,13 +32,14 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const response = await axios.post(loginUrl, loginValues);
       const token = response.data.token;
       localStorage.setItem('token', token);
       window.location = `${REACT_APP_AUTHORIZE_URL}?client_id=${REACT_APP_CLIENT_ID}&redirect_uri=${REACT_APP_REDIRECT_URL}&response_type=token&show_dialog=true`;
     } catch (err) {
-      setError(err);
+      console.error(err);
     }
   };
 
