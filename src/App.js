@@ -7,6 +7,7 @@ import LogOut from './modules/LogOut';
 import UserContext from './context/userContext';
 import jwt_decode from 'jwt-decode';
 import Navbar from './modules/Navbar';
+import ProfilePage from './modules/ProfilePage';
 import StartParty from '../src/modules/StartParty';
 import {
   BrowserRouter as Router,
@@ -34,7 +35,8 @@ function App() {
         <Router>
           <Switch>
             <Route path='/home' component={Home} />
-            <Route path='/connect' />
+            <Route path='/users-profile' component={ProfilePage} />
+            {/*  <Route path='/connect' /> do we need it? */}
             <Route path='/login' component={Login} />
             <Route path='/logout' component={LogOut} />
             <Route path='/signin' component={Signin} />
