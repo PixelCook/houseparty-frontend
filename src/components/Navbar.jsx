@@ -131,7 +131,7 @@ export default function SearchAppBar() {
             >
              <a href="/profile"> <MenuItem onClick={handleClose}>Profile</MenuItem></a>
               <a href="/start-party"><MenuItem onClick={handleClose}>Throw a Party</MenuItem></a> 
-              <a href="/start-party"><MenuItem onClick={handleClose}>Join a Party</MenuItem></a>
+              <a href="/join"><MenuItem onClick={handleClose}>Join a Party</MenuItem></a>
               <a href="/logout"><MenuItem onClick={handleClose}>Logout</MenuItem></a>
             </Menu>
 
