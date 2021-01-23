@@ -1,13 +1,13 @@
 import React, { useContext, useEffect } from 'react';
 import '../CSS/home.css';
-import Mainpage from '../modules/Mainpage';
-import StartParty from '../modules/StartParty';
-import JoinParty from '../modules/JoinParty';
-import Profile from '../modules/Profile';
+import Mainpage from '../components/Mainpage';
+import StartParty from '../components/StartParty';
+import JoinParty from '../components/JoinParty';
+import Profile from '../components/Profile';
 import AuthContext from '../context/userContext';
-import SpotifyLogin from '../modules/SpotifyLogin';
+import SpotifyLogin from '../components/SpotifyLogin';
 import queryString from 'query-string';
-import AboutUs from "../modules/AboutUs"
+import AboutUs from "../components/AboutUs"
 
 const Home = (props) => {
   const { user } = useContext(AuthContext);

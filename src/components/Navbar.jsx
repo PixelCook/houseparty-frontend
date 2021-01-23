@@ -129,10 +129,10 @@ export default function SearchAppBar() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>Throw a Party</MenuItem>
-              <MenuItem onClick={handleClose}>Join a Party</MenuItem>
-              <MenuItem onClick={handleClose}>Logout</MenuItem>
+             <a href="/profile"> <MenuItem onClick={handleClose}>Profile</MenuItem></a>
+              <a href="/start-party"><MenuItem onClick={handleClose}>Throw a Party</MenuItem></a> 
+              <a href="/start-party"><MenuItem onClick={handleClose}>Join a Party</MenuItem></a>
+              <a href="/logout"><MenuItem onClick={handleClose}>Logout</MenuItem></a>
             </Menu>
 
             <div className={classes.search}>
