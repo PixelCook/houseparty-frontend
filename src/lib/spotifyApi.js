@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { spotifyToken } from './url';
 
 const getProfileData = () => {
   const localSpotify = JSON.parse(localStorage.getItem('spotifyToken'));
@@ -22,4 +23,38 @@ const getProfilePlayList = () => {
   });
 };
 
-export { getProfileData, getProfilePlayList };
+const getPlaylistMusic = (playlistId) => {
+  const localSpotify = JSON.parse(localStorage.getItem('spotifyToken'));
+
+  return axios.get(
+    `https://api.spotify.com/v1/playlists/${playlistId}/tracks?market=IL`,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `${localSpotify.token_type} ${localSpotify.access_token}`,
+      },
+    }
+  );
+};
+
+const authOptionsGetRefresh = (token) => {
+  const { REACT_APP_CLIENT_ID, REACT_APP_CLIENT_SECRET } = process.env;
+
+  return axios.post(spotifyToken, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    Authorization: {
+      clientId: REACT_APP_CLIENT_ID,
+      secret: REACT_APP_CLIENT_SECRET,
+      spotifyToken: token.code,
+    },
+  });
+};
+
+export {
+  getProfileData,
+  getProfilePlayList,
+  getPlaylistMusic,
+  authOptionsGetRefresh,
+};

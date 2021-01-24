@@ -6,20 +6,24 @@ import JoinParty from '../components/JoinParty';
 import AuthContext from '../context/userContext';
 import queryString from 'query-string';
 import AboutUs from '../components/AboutUs';
+import { authOptionsGetRefresh } from '../lib/spotifyApi';
 
 const Home = (props) => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
     // store spotify token in localStorage
-    const parsedHash = queryString.parse(window.location.hash);
+    const parsedHash = queryString.parse(window.location.search);
 
-    if (parsedHash.access_token) {
-      localStorage.setItem('spotifyToken', JSON.stringify(parsedHash));
+    if (parsedHash) {
+      authOptionsGetRefresh(parsedHash).then((response) => {
+        localStorage.setItem(
+          'spotifyToken',
+          JSON.stringify(response.data.body)
+        );
+      });
     }
   }, []);
-
-  // Render
 
   // AuthRender
   if (user) {
