@@ -14,6 +14,7 @@ import { joinPartyUrl } from '../utils/config'
 
 export default function JoinParty() {
   const [joinPartyValue, setJoinPartyValue] = useState({})
+  console.log(localStorage.getItem('party'));
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,7 +30,7 @@ export default function JoinParty() {
       console.log('before sending', joinPartyValue);
       const response = await axios.post(joinPartyUrl, joinPartyValue)
       const partyJoined = await response.data
-      localStorage.setItem('partyId', partyJoined.partyId)
+      localStorage.setItem('party', JSON.stringify(partyJoined))
       window.location = '/home'
     } catch (err) {
       alert(err.response.data);
@@ -50,8 +51,7 @@ export default function JoinParty() {
       <div className='joinparty-wrapper'>
         <Grid container>
           <Grid item xs={11}>
-            <h4 className='joinparty-ready'>Ready to Join a Party?</h4>
-          </Grid>
+            </Grid>
           <Grid item xs={11}>
             <FormControl>
               <InputLabel htmlFor='my-input'>Party ID</InputLabel>

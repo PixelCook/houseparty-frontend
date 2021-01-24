@@ -6,7 +6,12 @@ import JoinParty from '../components/JoinParty';
 import AuthContext from '../context/userContext';
 import queryString from 'query-string';
 import AboutUs from '../components/AboutUs';
+import Modal from "../components/Modal"
+import Profile from "../components/Profile"
+
 import { authOptionsGetRefresh } from '../lib/spotifyApi';
+
+
 
 const Home = (props) => {
   const { user } = useContext(AuthContext);
@@ -29,6 +34,8 @@ const Home = (props) => {
   if (user) {
     return (
       <div>
+        <Modal 
+        true = {true} />
         <StartParty />
         <JoinParty />
         {/* <Profile /> */}

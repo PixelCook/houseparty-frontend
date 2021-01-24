@@ -88,13 +88,13 @@ export default function SearchAppBar() {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    const authToken = localStorage.get("spotifyToken");
+    const localSpotify = JSON.parse(localStorage.getItem('spotifyToken'));
     const url = `https://api.spotify.com/v1/search?q=${searchValue}&type=track&market=US&limit=10`;
     try {
       axios
         .get(url, {
           headers: {
-            Authorization: `Bearer ${authToken}`,
+            Authorization: `Bearer ${localSpotify}`,
           },
         })
         .then((res) => {

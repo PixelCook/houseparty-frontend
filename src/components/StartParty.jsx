@@ -21,6 +21,7 @@ export default function StartParty() {
     console.log(e.target.value);
     const { value, name } = e.target;
     startPartyValuesCopy['userId'] = user.id;
+    startPartyValuesCopy['username'] = user.username;
     startPartyValuesCopy[name] = value;
     setSelectedDate(value);
     setStartPartyValues(startPartyValuesCopy);
@@ -36,6 +37,7 @@ export default function StartParty() {
         },
       });
       const partyId = response.data;
+      console.log(partyId)
       setPartyCreated(partyId);
     } catch (err) {
       console.error(err);
