@@ -14,7 +14,7 @@ const PlaylistCard = (props) => {
   };
 
   return (
-    <Card>
+    <Card onClick={() => (window.location = `/playlist/id=${props.elData.id}`)}>
       <h1>{props.elData.name}</h1>
       {props.elData.images.length > 0 && showPlayListImage()}
     </Card>
