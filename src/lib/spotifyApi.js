@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { spotifyToken } from './url';
+import cookie from 'react-cookies';
 
 const getProfileData = () => {
-  const localSpotify = JSON.parse(localStorage.getItem('spotifyToken'));
+  const localSpotify = cookie.load('spotifyToken');
 
   return axios.get('https://api.spotify.com/v1/me', {
     headers: {
@@ -13,7 +14,7 @@ const getProfileData = () => {
 };
 
 const getProfilePlayList = () => {
-  const localSpotify = JSON.parse(localStorage.getItem('spotifyToken'));
+  const localSpotify = cookie.load('spotifyToken');
 
   return axios.get('https://api.spotify.com/v1/me/playlists', {
     headers: {
@@ -24,7 +25,7 @@ const getProfilePlayList = () => {
 };
 
 const getPlaylistMusic = (playlistId) => {
-  const localSpotify = JSON.parse(localStorage.getItem('spotifyToken'));
+  const localSpotify = cookie.load('spotifyToken');
 
   return axios.get(
     `https://api.spotify.com/v1/playlists/${playlistId}/tracks?market=IL`,

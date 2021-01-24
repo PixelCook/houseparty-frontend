@@ -6,26 +6,26 @@ import JoinParty from '../components/JoinParty';
 import AuthContext from '../context/userContext';
 import queryString from 'query-string';
 import AboutUs from '../components/AboutUs';
-import Modal from "../components/Modal"
-import Profile from "../components/Profile"
+import Modal from '../components/Modal';
+import Profile from '../components/Profile';
+import cookie from 'react-cookies';
 
 import { authOptionsGetRefresh } from '../lib/spotifyApi';
-
-
 
 const Home = (props) => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    // store spotify token in localStorage
+    // store spotify token in cookie
     const parsedHash = queryString.parse(window.location.search);
 
-    if (parsedHash) {
+    if (localStorage.getItem('token') && !cookie.load('spotifyToken')) {
       authOptionsGetRefresh(parsedHash).then((response) => {
-        localStorage.setItem(
-          'spotifyToken',
-          JSON.stringify(response.data.body)
-        );
+        cookie.save('spotifyToken', response.data.body, {
+          path: '/',
+          expires: new Date(Date.now() + 3000),
+          maxAge: 3000,
+        });
       });
     }
   }, []);
@@ -34,11 +34,10 @@ const Home = (props) => {
   if (user) {
     return (
       <div>
-        <Modal 
-        true = {true} />
+        <Modal true={true} />
         <StartParty />
         <JoinParty />
-        {/* <Profile /> */}
+        <Profile />
         <AboutUs />
       </div>
     );
