@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import jwt_decode from 'jwt-decode';
 import Image from 'material-ui-image';
 import Box from '@material-ui/core/Box';
+import cookie from 'react-cookies';
 
 import { getProfileData } from '../lib/spotifyApi';
 import PlaylistList from './PlaylistList';
@@ -15,7 +16,7 @@ const Profile = () => {
   const [loader, setLoader] = useState(true);
 
   useEffect(() => {
-    if (localStorage.getItem('spotifyToken')) {
+    if (cookie.load('spotifyToken')) {
       getProfileData().then((response) => {
         setUserDataSpotify(response.data);
 

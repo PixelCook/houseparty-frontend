@@ -13,7 +13,6 @@ const PlatlistPage = () => {
     const parsedHash = queryString.parse(window.location.pathname);
 
     getPlaylistMusic(Object.values(parsedHash)[0]).then((response) => {
-      console.log(response.data.items);
       setMusicList(response.data.items);
       setLoading(false);
     });
