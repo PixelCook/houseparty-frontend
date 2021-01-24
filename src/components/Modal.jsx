@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
+import "../CSS/modal.css"
+import SpotifyLogin from "../components/SpotifyLogin"
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -20,7 +22,7 @@ function getModalStyle() {
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
-    width: 400,
+    width: 200,
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
@@ -28,11 +30,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleModal() {
+export default function SimpleModal(props) {
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(props.true);
+
+
+//   const handleOpen = () => {
+//     setOpen(true);
+// }
 
   const handleClose = () => {
     setOpen(false);
@@ -40,10 +47,11 @@ export default function SimpleModal() {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <h2 id="simple-modal-title">Text in a modal</h2>
+      <h2 id="simple-modal-title">Sign into Spotify</h2>
       <p id="simple-modal-description">
-        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          Please take a moment to sign into Spotify, the app will not function properly otherwise! 
       </p>
+      <SpotifyLogin />
       <SimpleModal />
     </div>
   );

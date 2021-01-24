@@ -50,8 +50,7 @@ export default function JoinParty() {
       <div className='joinparty-wrapper'>
         <Grid container>
           <Grid item xs={11}>
-            <h4 className='joinparty-ready'>Ready to Join a Party?</h4>
-          </Grid>
+            </Grid>
           <Grid item xs={11}>
             <FormControl>
               <InputLabel htmlFor='my-input'>Party ID</InputLabel>

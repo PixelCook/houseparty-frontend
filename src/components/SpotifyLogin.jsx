@@ -1,3 +1,5 @@
+import Button from '@material-ui/core/Button';
+
 const SpotifyLogin = () => {
   const {
     REACT_APP_CLIENT_ID,
@@ -10,9 +12,9 @@ const SpotifyLogin = () => {
   };
 
   return (
-    <button variant='info' type='submit' onClick={handleLogin}>
+    <Button variant='contained' type='submit' onClick={handleLogin}>
       Login to spotify
-    </button>
+    </Button>
   );
 };
 
