@@ -28,12 +28,8 @@ const Profile = () => {
         setLoader(false);
       });
     } else {
-<<<<<<< HEAD
-      // window.location = 'home';
-=======
       setLoginMassage(true);
       setLoader(false);
->>>>>>> 5fcb9ae9e7599ecb6cf3c79cba673e76178b15fe
     }
   }, []);
 
