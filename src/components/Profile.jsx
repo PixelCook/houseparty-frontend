@@ -16,8 +16,6 @@ const Profile = () => {
   const [loader, setLoader] = useState(true);
   const [loginMassage, setLoginMassage] = useState(false);
 
-  console.log(cookie.load('spotifyToken'));
-
   useEffect(() => {
     if (cookie.load('spotifyToken')) {
       getProfileData().then((response) => {

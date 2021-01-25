@@ -15,8 +15,6 @@ import { authOptionsGetRefresh } from '../lib/spotifyApi';
 const Home = (props) => {
   const { user } = useContext(AuthContext);
 
-  console.log(cookie.load('spotifyToken'));
-
   useEffect(() => {
     // store spotify token in cookie
     const parsedHash = queryString.parse(window.location.search);
