@@ -15,6 +15,8 @@ import { authOptionsGetRefresh } from '../lib/spotifyApi';
 const Home = (props) => {
   const { user } = useContext(AuthContext);
 
+  console.log(cookie.load('spotifyToken'));
+
   useEffect(() => {
     // store spotify token in cookie
     const parsedHash = queryString.parse(window.location.search);
@@ -26,6 +28,8 @@ const Home = (props) => {
           expires: new Date(Date.now() + 3000),
           maxAge: 3000,
         });
+
+        window.location.reload();
       });
     }
   }, []);
