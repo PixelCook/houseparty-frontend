@@ -46,8 +46,7 @@ const Home = (props) => {
   if (user) {
     return (
       <div>
-        <Modal true={true} />
-        {/* {!cookieSpotify || (!cookieSpotify.error && <Modal true={true} />)} */}
+        {!cookieSpotify || (cookieSpotify.error && <Modal true={true} />)}
         <StartParty />
         <JoinParty />
         {/* <Profile /> */}
