@@ -33,6 +33,14 @@ const Profile = () => {
     }
   }, []);
 
+  const showImage = () => {
+    return (
+      <Box width={1 / 3}>
+        <Image src={`${userDataSpotify.images[0].url}`} disableSpinner />
+      </Box>
+    );
+  };
+
   if (!loader) {
     if (loginMassage) {
       return (
@@ -53,9 +61,7 @@ const Profile = () => {
             backgroundSize: '100% 100%',
           }}
         >
-          <Box width={1 / 3}>
-            <Image src={`${userDataSpotify.images[0].url}`} disableSpinner />
-          </Box>
+          {userDataSpotify.images && showImage()}
 
           <p>
             name: {logInData.firstName} {logInData.lastName}
