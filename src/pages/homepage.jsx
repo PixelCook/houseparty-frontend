@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import '../CSS/home.css';
 import Mainpage from '../components/Mainpage';
 import StartParty from '../components/StartParty';
@@ -14,12 +14,20 @@ import { authOptionsGetRefresh } from '../lib/spotifyApi';
 
 const Home = (props) => {
   const { user } = useContext(AuthContext);
+  const [cookieSpotify, setCookieSpotify] = useState(null);
+
+  console.log(cookieSpotify);
 
   useEffect(() => {
     // store spotify token in cookie
     const parsedHash = queryString.parse(window.location.search);
 
-    if (localStorage.getItem('token') && !cookie.load('spotifyToken')) {
+    if (
+      localStorage.getItem('token') &&
+      (!cookie.load('spotifyToken') || cookie.load('spotifyToken').error)
+    ) {
+      cookie.remove('spotifyToken');
+
       authOptionsGetRefresh(parsedHash).then((response) => {
         cookie.save('spotifyToken', response.data.body, {
           path: '/',
@@ -27,8 +35,10 @@ const Home = (props) => {
           maxAge: 3000,
         });
 
-        window.location.reload();
+        setCookieSpotify(cookie.load('spotifyToken'));
       });
+    } else {
+      setCookieSpotify(cookie.load('spotifyToken'));
     }
   }, []);
 
@@ -36,10 +46,10 @@ const Home = (props) => {
   if (user) {
     return (
       <div>
-        <Modal true={true} />
+        {!cookieSpotify || (cookieSpotify.error && <Modal true={true} />)}
         <StartParty />
         <JoinParty />
-        <Profile />
+        {/* <Profile /> */}
         <AboutUs />
       </div>
     );
