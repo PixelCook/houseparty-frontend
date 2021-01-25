@@ -11,7 +11,6 @@ import '../CSS/signin.css';
 import { Link } from 'react-router-dom';
 import { loginUrl } from '../utils/config';
 import axios from 'axios';
-import Modal from '@material-ui/core/Modal';
 
 export default function Login() {
   const [loginValues, setSLoginValues] = useState({});
@@ -31,7 +30,7 @@ export default function Login() {
       const response = await axios.post(loginUrl, loginValues);
       const token = response.data.token;
       localStorage.setItem('token', token);
-
+      
       window.location = '/home';
     } catch (err) {
       console.error(err);

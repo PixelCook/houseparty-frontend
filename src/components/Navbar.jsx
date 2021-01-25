@@ -9,7 +9,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import UserContext from "../context/userContext";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import axios from "axios";
+import {getSearchData} from "../lib/spotifyApi"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -88,24 +88,9 @@ export default function SearchAppBar() {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    const localSpotify = JSON.parse(localStorage.getItem('spotifyToken'));
-    const url = `https://api.spotify.com/v1/search?q=${searchValue}&type=track&market=US&limit=10`;
-    try {
-      axios
-        .get(url, {
-          headers: {
-            Authorization: `Bearer ${localSpotify}`,
-          },
-        })
-        .then((res) => {
-          console.log(res.data);
-          console.log(res.status);
-          const searchresults = res.data;
-          setSearchResults(searchresults);
-        });
-    } catch (err) {
-      console.log(err);
-    }
+    getSearchData(searchValue).then((response) => {
+      console.log(response.data)
+    })
   };
 
   if (user) {
@@ -129,10 +114,19 @@ export default function SearchAppBar() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-             <a href="/profile"> <MenuItem onClick={handleClose}>Profile</MenuItem></a>
-              <a href="/start-party"><MenuItem onClick={handleClose}>Throw a Party</MenuItem></a> 
-              <a href="/join"><MenuItem onClick={handleClose}>Join a Party</MenuItem></a>
-              <a href="/logout"><MenuItem onClick={handleClose}>Logout</MenuItem></a>
+              <a href="/profile">
+                {" "}
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+              </a>
+              <a href="/start-party">
+                <MenuItem onClick={handleClose}>Throw a Party</MenuItem>
+              </a>
+              <a href="/join">
+                <MenuItem onClick={handleClose}>Join a Party</MenuItem>
+              </a>
+              <a href="/logout">
+                <MenuItem onClick={handleClose}>Logout</MenuItem>
+              </a>
             </Menu>
 
             <div className={classes.search}>
