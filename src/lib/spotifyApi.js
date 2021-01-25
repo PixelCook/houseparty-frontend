@@ -2,6 +2,19 @@ import axios from 'axios';
 import { spotifyToken } from './url';
 import cookie from 'react-cookies';
 
+const getSearchData = (searchValue) => {
+  const localSpotify = cookie.load("spotifyToken");
+    return axios.get(
+      `https://api.spotify.com/v1/search?q=${searchValue}&type=track&market=US&limit=10`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `${localSpotify.token_type} ${localSpotify.access_token}`,
+        },
+      }
+    );
+}
+
 const getProfileData = () => {
   const localSpotify = cookie.load('spotifyToken');
 
@@ -58,4 +71,5 @@ export {
   getProfilePlayList,
   getPlaylistMusic,
   authOptionsGetRefresh,
+  getSearchData
 };

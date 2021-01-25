@@ -27,7 +27,7 @@ const Profile = () => {
         setLoader(false);
       });
     } else {
-      window.location = 'home';
+      // window.location = 'home';
     }
   }, []);
 

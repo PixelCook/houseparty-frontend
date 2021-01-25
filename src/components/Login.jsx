@@ -11,7 +11,6 @@ import '../CSS/signin.css';
 import { Link } from 'react-router-dom';
 import { loginUrl } from '../utils/config';
 import axios from 'axios';
-import Modal from '@material-ui/core/Modal';
 
 export default function Login() {
   const [loginValues, setSLoginValues] = useState({});
@@ -51,6 +50,7 @@ export default function Login() {
 
       window.location = url;
       return;
+      
     } catch (err) {
       console.error(err);
     }
