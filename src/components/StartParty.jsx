@@ -36,8 +36,8 @@ export default function StartParty() {
           Authorization: localStorage.getItem('token'),
         },
       });
-      const partyId = response.data;
-      console.log(partyId);
+      const partyCreated = response.data;
+      localStorage.setItem('party', JSON.stringify(partyCreated));
       setPartyCreated(partyId);
     } catch (err) {
       console.error(err);
