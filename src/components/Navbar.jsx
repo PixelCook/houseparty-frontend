@@ -86,13 +86,11 @@ export default function SearchAppBar() {
 
   const handleSearch = (e) => {
     setSearchValue(e.target.value);
-    console.log(searchValue);
   };
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     getSearchData(searchValue).then((response) => {
-      console.log(response.data.tracks.items)
       if(response.status === 200){
         setOpen(true)
       }
