@@ -38,7 +38,7 @@ export default function StartParty() {
       });
       const partyCreated = response.data;
       localStorage.setItem('party', JSON.stringify(partyCreated));
-      setPartyCreated(partyId);
+      // setPartyCreated(partyId);
     } catch (err) {
       console.error(err);
     }

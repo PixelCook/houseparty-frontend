@@ -1,50 +1,50 @@
-import axios from 'axios';
-import { spotifyToken } from './url';
-import cookie from 'react-cookies';
+import axios from "axios";
+import { spotifyToken } from "./url";
+import cookie from "react-cookies";
 
 const getSearchData = (searchValue) => {
   const localSpotify = cookie.load("spotifyToken");
-    return axios.get(
-      `https://api.spotify.com/v1/search?q=${searchValue}&type=track&market=US&limit=10`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `${localSpotify.token_type} ${localSpotify.access_token}`,
-        },
-      }
-    );
-}
+  return axios.get(
+    `https://api.spotify.com/v1/search?q=${searchValue}&type=track&market=US&limit=20`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${localSpotify.token_type} ${localSpotify.access_token}`,
+      },
+    }
+  );
+};
 
 const getProfileData = () => {
-  const localSpotify = cookie.load('spotifyToken');
+  const localSpotify = cookie.load("spotifyToken");
 
-  return axios.get('https://api.spotify.com/v1/me', {
+  return axios.get("https://api.spotify.com/v1/me", {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       Authorization: `${localSpotify.token_type} ${localSpotify.access_token}`,
     },
   });
 };
 
 const getProfilePlayList = () => {
-  const localSpotify = cookie.load('spotifyToken');
+  const localSpotify = cookie.load("spotifyToken");
 
-  return axios.get('https://api.spotify.com/v1/me/playlists', {
+  return axios.get("https://api.spotify.com/v1/me/playlists", {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       Authorization: `${localSpotify.token_type} ${localSpotify.access_token}`,
     },
   });
 };
 
 const getPlaylistMusic = (playlistId) => {
-  const localSpotify = cookie.load('spotifyToken');
+  const localSpotify = cookie.load("spotifyToken");
 
   return axios.get(
     `https://api.spotify.com/v1/playlists/${playlistId}/tracks?market=IL`,
     {
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `${localSpotify.token_type} ${localSpotify.access_token}`,
       },
     }
@@ -56,7 +56,7 @@ const authOptionsGetRefresh = (token) => {
 
   return axios.post(spotifyToken, {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     Authorization: {
       clientId: REACT_APP_CLIENT_ID,
@@ -71,5 +71,5 @@ export {
   getProfilePlayList,
   getPlaylistMusic,
   authOptionsGetRefresh,
-  getSearchData
+  getSearchData,
 };

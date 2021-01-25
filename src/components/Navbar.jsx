@@ -10,6 +10,7 @@ import UserContext from "../context/userContext";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import {getSearchData} from "../lib/spotifyApi"
+import SearchDisplay from "../components/SearchDisplay"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -71,6 +72,7 @@ export default function SearchAppBar() {
   const [searchResults, setSearchResults] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const { user } = useContext(UserContext);
+  const [openSearch, setOpen] = useState(false)
   const classes = useStyles();
 
   const handleClick = (event) => {
@@ -79,6 +81,7 @@ export default function SearchAppBar() {
 
   const handleClose = () => {
     setAnchorEl(null);
+    setOpen(false)
   };
 
   const handleSearch = (e) => {
@@ -89,7 +92,12 @@ export default function SearchAppBar() {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     getSearchData(searchValue).then((response) => {
-      console.log(response.data)
+      console.log(response.data.tracks.items)
+      if(response.status === 200){
+        setOpen(true)
+      
+      }
+      setSearchResults(response.data.tracks.items)
     })
   };
 
@@ -144,11 +152,10 @@ export default function SearchAppBar() {
                   onChange={handleSearch}
                 />
               </form>
-              <ul>
-                {searchResults.map((result) => (
-                  <li>{result}</li>
-                ))}
-              </ul>
+              <SearchDisplay
+              searchResults = {searchResults}
+              openSearch = {openSearch}
+               />
             </div>
           </Toolbar>
         </AppBar>
