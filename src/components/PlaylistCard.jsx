@@ -16,12 +16,12 @@ const PlaylistCard = (props) => {
     }
   };
 
-  const partyId = JSON.parse(localStorage.getItem('party'))
+  const party = JSON.parse(localStorage.getItem('party'))
 
 
   const handleClick = async (e) => {
     try {
-      const playlistAssigned = await axios.post(`${joinPartyUrl}/${partyId}`, e.target.value)
+      const playlistAssigned = await axios.post(`${joinPartyUrl}/${party.partyId}`, e.target.value)
       alert(playlistAssigned.data)
     } catch (err) {
       console.log(err);
