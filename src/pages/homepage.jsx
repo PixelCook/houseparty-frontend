@@ -26,6 +26,8 @@ const Home = (props) => {
           expires: new Date(Date.now() + 3000),
           maxAge: 3000,
         });
+
+        window.location.reload();
       });
     }
   }, []);
