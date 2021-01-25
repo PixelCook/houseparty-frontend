@@ -14,6 +14,7 @@ const Profile = () => {
   const [userDataSpotify, setUserDataSpotify] = useState({});
   const [logInData, setLogInData] = useState({});
   const [loader, setLoader] = useState(true);
+  const [loginMassage, setLoginMassage] = useState(false);
 
   useEffect(() => {
     if (cookie.load('spotifyToken')) {
@@ -27,11 +28,20 @@ const Profile = () => {
         setLoader(false);
       });
     } else {
-      window.location = 'home';
+      setLoginMassage(true);
+      setLoader(false);
     }
   }, []);
 
   if (!loader) {
+    if (loginMassage) {
+      return (
+        <div>
+          <h1>Please login</h1>
+          <p>Please log in so you can access your profile</p>
+        </div>
+      );
+    }
     return (
       <>
         <div
