@@ -37,7 +37,7 @@ export default function StartParty() {
         },
       });
       const partyId = response.data;
-      console.log(partyId)
+      console.log(partyId);
       setPartyCreated(partyId);
     } catch (err) {
       console.error(err);

@@ -17,12 +17,6 @@ export default function Login() {
   const [loginValues, setSLoginValues] = useState({});
   const [error, setError] = useState('');
 
-  const {
-    REACT_APP_CLIENT_ID,
-    REACT_APP_AUTHORIZE_URL,
-    REACT_APP_REDIRECT_URL,
-  } = process.env;
-
   const handleInputChange = (e) => {
     const { value, name } = e.target;
     const loginValuesCopy = { ...loginValues };
@@ -34,23 +28,11 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const scopes =
-        'ugc-image-upload user-read-recently-played user-read-playback-state app-remote-control playlist-modify-public playlist-modify-private user-read-currently-playing playlist-read-private playlist-read-collaborative';
       const response = await axios.post(loginUrl, loginValues);
       const token = response.data.token;
       localStorage.setItem('token', token);
 
-      const url =
-        'https://accounts.spotify.com/authorize' +
-        '?response_type=code' +
-        '&client_id=' +
-        REACT_APP_CLIENT_ID +
-        (scopes ? '&scope=' + encodeURIComponent(scopes) : '') +
-        '&redirect_uri=' +
-        encodeURIComponent(REACT_APP_REDIRECT_URL);
-
-      window.location = url;
-      return;
+      window.location = '/home';
     } catch (err) {
       console.error(err);
     }
