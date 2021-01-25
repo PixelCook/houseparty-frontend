@@ -61,7 +61,7 @@ const Profile = () => {
             backgroundSize: '100% 100%',
           }}
         >
-          {userDataSpotify.images && showImage()}
+          {userDataSpotify.images[0] && showImage()}
 
           <p>
             name: {logInData.firstName} {logInData.lastName}
