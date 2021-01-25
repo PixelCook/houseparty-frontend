@@ -24,7 +24,7 @@ import cookie from 'react-cookies';
 
 function App() {
   const [user, setUser] = useState();
-  const [spotifyUser, setSpotifyUser] = useState();
+  const [spotifyToken, setSpotifyToken] = useState();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -34,14 +34,14 @@ function App() {
     }
     const localSpotify = cookie.load("spotifyToken");
     if (localSpotify) {
-      setSpotifyUser(localSpotify)
+      setSpotifyToken(localSpotify)
     }
   }, []);
 
   return (
     <div className='App'>
       <UserContext.Provider value={{ user, setUser }}>
-        <SpotifyContext.Provider value={{spotifyUser, setSpotifyUser}}>
+        <SpotifyContext.Provider value={{spotifyToken, setSpotifyToken}}>
         <Navbar />
         <Router>
           <Switch>
