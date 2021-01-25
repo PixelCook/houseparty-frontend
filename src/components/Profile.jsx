@@ -1,14 +1,14 @@
-import React from 'react';
-import '../CSS/home.css';
-import profile from '../DesignImages/4.svg';
-import { useEffect, useState } from 'react';
-import jwt_decode from 'jwt-decode';
-import Image from 'material-ui-image';
-import Box from '@material-ui/core/Box';
-import cookie from 'react-cookies';
+import React from "react";
+import "../CSS/home.css";
+import profile from "../DesignImages/4.svg";
+import { useEffect, useState } from "react";
+import jwt_decode from "jwt-decode";
+import Image from "material-ui-image";
+import Box from "@material-ui/core/Box";
+import cookie from "react-cookies";
 
-import { getProfileData } from '../lib/spotifyApi';
-import PlaylistList from './PlaylistList';
+import { getProfileData } from "../lib/spotifyApi";
+import PlaylistList from "./PlaylistList";
 
 const Profile = () => {
   const [userDataSpotify, setUserDataSpotify] = useState({});
@@ -17,11 +17,11 @@ const Profile = () => {
   const [loginMessage, setLoginMassage] = useState(false);
 
   useEffect(() => {
-    if (cookie.load('spotifyToken')) {
+    if (cookie.load("spotifyToken")) {
       getProfileData().then((response) => {
         setUserDataSpotify(response.data);
 
-        const userToken = localStorage.getItem('token');
+        const userToken = localStorage.getItem("token");
         const tokenDecoded = jwt_decode(userToken);
 
         setLogInData(tokenDecoded);
@@ -44,7 +44,15 @@ const Profile = () => {
   if (!loader) {
     if (loginMessage) {
       return (
-        <div>
+        <div
+          className="background"
+          style={{
+            backgroundImage: `url(${profile})`,
+            backgroundRepeat: "no-repeat",
+            height: "100vh",
+            backgroundSize: "100% 100%",
+          }}
+        >
           <h1>Please login</h1>
           <p>Please log in so you can access your profile</p>
         </div>
@@ -53,22 +61,23 @@ const Profile = () => {
     return (
       <>
         <div
-          className='background'
+          className="background"
           style={{
             backgroundImage: `url(${profile})`,
-            backgroundRepeat: 'no-repeat',
-            height: '100vh',
-            backgroundSize: '100% 100%',
+            backgroundRepeat: "no-repeat",
+            height: "100vh",
+            backgroundSize: "100% 100%",
           }}
         >
-          {userDataSpotify.images[0] && showImage()}
+          <div className="profile-display">
+            {userDataSpotify.images[0] && showImage()}
 
-          <p>
-            name: {logInData.firstName} {logInData.lastName}
-          </p>
-          <p>email: {logInData.email}</p>
+            <h3>
+              Name: {logInData.firstName} {logInData.lastName}
+            </h3>
+            <h4>Email: {logInData.email}</h4>
+          </div>
         </div>
-
       </>
     );
   } else {

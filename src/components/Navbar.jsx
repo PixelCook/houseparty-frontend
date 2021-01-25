@@ -95,7 +95,6 @@ export default function SearchAppBar() {
       console.log(response.data.tracks.items)
       if(response.status === 200){
         setOpen(true)
-      
       }
       setSearchResults(response.data.tracks.items)
     })

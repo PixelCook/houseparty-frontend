@@ -49,7 +49,7 @@ const Home = (props) => {
         {!cookieSpotify || (cookieSpotify.error && <Modal true={true} />)}
         <StartParty />
         <JoinParty />
-        {/* <Profile /> */}
+        <Profile />
         <AboutUs />
       </div>
     );

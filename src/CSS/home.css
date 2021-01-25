@@ -10,3 +10,10 @@ html, body {
     padding: 0px;
 }
 
+.profile-display{
+  display:flex;
+  flex-direction: column;
+  padding-top: 40%;
+  padding-left: 10%;
+}
+
