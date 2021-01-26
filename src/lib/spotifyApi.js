@@ -15,6 +15,19 @@ const getSearchData = (searchValue) => {
   );
 };
 
+const addSong = (playlist_id, songId) => {
+  const localSpotify = cookie.load("spotifyToken");
+  return axios.post(
+    `https://api.spotify.com/v1/playlists/${playlist_id}/tracks?uris=spotify%3Atrac${songId}`,
+    {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `${localSpotify.token_type} ${localSpotify.access_token}`,
+    },
+  }
+  )
+}
+
 const getProfileData = () => {
   const localSpotify = cookie.load("spotifyToken");
 
@@ -72,4 +85,5 @@ export {
   getPlaylistMusic,
   authOptionsGetRefresh,
   getSearchData,
+  addSong,
 };

@@ -1,10 +1,13 @@
-import React from "react";
+import React, {useContext} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import IconButton from "@material-ui/core/IconButton";
-import InfoIcon from "@material-ui/icons/Info";
+import StarBorderIcon from '@material-ui/icons/StarBorder';
+import AuthContext from '../context/userContext';
+import {addSong} from '../lib/spotifyApi'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,17 +21,18 @@ const useStyles = makeStyles((theme) => ({
     width: 500,
     height: 450,
   },
-  icon: {
-    color: "rgba(255, 255, 255, 0.54)",
+  title: {
+    color: "green",
   },
 }));
 
 export default function TitlebarGridList(props) {
+    const { user } = useContext(AuthContext);
   const classes = useStyles();
   console.log(props.searchResults.length);
 
   if (props.openSearch === false) {
-    return <a href=""></a>;
+    return <a href="#"></a>;
   }
   if (props.searchResults.length === 0) {
     return <p style={{ color: "red" }}> Whoops, maybe check the spelling</p>;
@@ -48,11 +52,8 @@ export default function TitlebarGridList(props) {
                 title={results.name}
                 subtitle={<span>by: {results.artists[0].name}</span>}
                 actionIcon={
-                  <IconButton
-                    aria-label={`add ${results.name} to playlist`}
-                    className={classes.icon}
-                  >
-                    <InfoIcon />
+                    <IconButton aria-label={`star ${results.album.name}`} onClick={addSong(user, results.id)}>
+                    <StarBorderIcon className={classes.title} />
                   </IconButton>
                 }
               />
