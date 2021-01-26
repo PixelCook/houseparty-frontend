@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import queryString from 'query-string';
 import { DataGrid } from '@material-ui/data-grid';
+import TableCell from '@material-ui/core/TableCell';
 
 import { getPlaylistMusic } from '../lib/spotifyApi';
-import MusicCard from './MusicCard';
+import '../CSS/table.css';
 
 const PlatlistPage = () => {
   const [musicList, setMusicList] = useState([]);
@@ -20,41 +21,42 @@ const PlatlistPage = () => {
 
   const createTable = () => {
     const columns = [
-      { field: 'artists', headerName: 'Artists', width: 130 },
-      { field: 'album', headerName: 'Album', width: 130 },
-      { field: 'songName', headerName: 'Song name', width: 130 },
+      { field: 'id', headerName: 'ID', width: 70, align: 'center' },
+      { field: 'artists', headerName: 'Artists', width: 287, align: 'center' },
+      {
+        field: 'album',
+        headerName: 'Album',
+        width: 287,
+      },
+      {
+        field: 'songName',
+        headerName: 'Song name',
+        width: 287,
+      },
     ];
 
     const rows = [];
 
-    musicList.forEach((song) => {
-      // { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
+    musicList.forEach((song, index) => {
       rows.push({
+        id: index + 1,
         artists: song.track.artists[0].name,
         album: song.track.album.name,
         songName: song.track.name,
       });
     });
 
-    console.log(rows);
-
-    // return (
-    //   <div style={{ height: 400, width: '100%' }}>
-    //     <DataGrid
-    //       rows={rows}
-    //       columns={columns}
-    //       pageSize={5}
-    //       checkboxSelection
-    //     />
-    //   </div>
-    // );
-
-    return <h1>dsadsasd</h1>;
+    return (
+      <div className='table'>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={5}
+          checkboxSelection
+        />
+      </div>
+    );
   };
-
-  //   const mapMusicList = (data) => {
-  //     return createTable();
-  //   };
 
   if (!loading) {
     return createTable();
