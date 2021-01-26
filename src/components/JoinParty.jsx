@@ -30,7 +30,7 @@ export default function JoinParty() {
       const response = await axios.post(joinPartyUrl, joinPartyValue);
       const partyJoined = await response.data;
       localStorage.setItem('party', JSON.stringify(partyJoined));
-      window.location = '/home';
+      window.location = `/playlist/id=${partyJoined.playlistId}`
     } catch (err) {
       alert(err.response.data);
     }
