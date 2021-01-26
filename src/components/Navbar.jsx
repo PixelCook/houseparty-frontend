@@ -93,6 +93,7 @@ export default function SearchAppBar() {
     getSearchData(searchValue).then((response) => {
       if(response.status === 200){
         setOpen(true)
+        console.log(response.data)
       }
       setSearchResults(response.data.tracks.items)
     })
@@ -149,13 +150,14 @@ export default function SearchAppBar() {
                   onChange={handleSearch}
                 />
               </form>
-              <SearchDisplay
-              searchResults = {searchResults}
-              openSearch = {openSearch}
-               />
+              
             </div>
           </Toolbar>
         </AppBar>
+        <SearchDisplay
+              searchResults = {searchResults}
+              openSearch = {openSearch}
+               />
       </div>
     );
   }
