@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import queryString from 'query-string';
 import { DataGrid } from '@material-ui/data-grid';
-import TableCell from '@material-ui/core/TableCell';
 
 import { getPlaylistMusic } from '../lib/spotifyApi';
 import '../CSS/table.css';

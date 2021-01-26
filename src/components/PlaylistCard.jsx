@@ -1,11 +1,15 @@
-import React from 'react'
+import React from 'react';
 import { Card } from '@material-ui/core';
 import Image from 'material-ui-image';
 import Box from '@material-ui/core/Box';
 import axios from 'axios';
-import { startPartyUrl } from '../utils/config'
+import { startPartyUrl } from '../utils/config';
 
 const PlaylistCard = (props) => {
+  const selectPath = window.location.pathname.includes(
+    '/start-party/select/id=:'
+  );
+
   const showPlayListImage = () => {
     if (props.elData.images.length > 0) {
       return (
@@ -16,27 +20,49 @@ const PlaylistCard = (props) => {
     }
   };
 
-  const party = JSON.parse(localStorage.getItem('party'))
-
+  const selectButton = () => {
+    return (
+      <button value={props.elData.id} onClick={(e) => handleClick(e)}>
+        Select this playlist
+      </button>
+    );
+  };
 
   const handleClick = async (e) => {
-    console.log(e.target.value, startPartyUrl, party.partyId);
+    const party = JSON.parse(localStorage.getItem('party'));
+
     try {
-      const playlistAdded = await axios.post(`${startPartyUrl}/${party.partyId}`, e.target.value)
-      alert(playlistAdded.data)
-      window.location = `/playlist/id=${props.elData.id}`
+      await axios({
+        method: 'post',
+        url: `${startPartyUrl}/${party.partyId}`,
+        data: {
+          playlistId: e.target.value,
+        },
+        headers: {
+          authorization: localStorage.getItem('token'),
+        },
+      }).then((response) => {
+        localStorage.setItem(
+          'party',
+          JSON.stringify(response.data.updatedeParty)
+        );
+
+        window.location = `/playlist/id=${props.elData.id}`;
+      });
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
-  }
+  };
 
   return (
     <>
-      <Card onClick={() => (window.location = `/playlist/id=${props.elData.id}`)}>
+      <Card
+        onClick={() => (window.location = `/playlist/id=${props.elData.id}`)}
+      >
         <h1>{props.elData.name}</h1>
         {props.elData.images.length > 0 && showPlayListImage()}
       </Card>
-      <button value={props.elData.id} onClick={(e) => handleClick(e)}>Select this playlist</button>
+      {selectPath && selectButton()}
     </>
   );
 };
