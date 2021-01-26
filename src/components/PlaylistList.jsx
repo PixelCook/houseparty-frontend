@@ -10,6 +10,7 @@ const PlaylistList = () => {
   useEffect(() => {
     getProfilePlayList().then((response) => {
       setSpotifyPlaylist(response.data.items);
+      console.log(spotifyPlaylist);
       setLoader(false);
     });
   }, []);
