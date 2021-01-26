@@ -21,6 +21,7 @@ import {
 import PlatlistPage from './components/PlatlistPage';
 import cookie from 'react-cookies';
 import PlayListPage from './pages/PlayListPage';
+import SelectPlaylist from './components/SelectPlaylist';
 
 function App() {
   const [user, setUser] = useState();
@@ -54,7 +55,11 @@ function App() {
               <Route path='/join' component={JoinParty} />
               <Route path='/logout' component={LogOut} />
               <Route path='/signin' component={Signin} />
-              <Route path='/start-party' component={StartParty} />
+              <Route exact path='/start-party' component={StartParty} />
+              <Route
+                path='/start-party/select/id=:id'
+                component={SelectPlaylist}
+              />
               <Redirect to='/home' />
             </Switch>
           </Router>

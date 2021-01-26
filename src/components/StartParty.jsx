@@ -7,38 +7,43 @@ import axios from 'axios';
 import { startPartyUrl } from '../utils/config';
 
 export default function StartParty() {
-  const date = new Date();
-  const [startPartyValues, setStartPartyValues] = useState({});
-  const [selectedDate, setSelectedDate] = useState(
-    date.toISOString().split('T')[0]
-  );
+  // const date = new Date();
+  // const [startPartyValues, setStartPartyValues] = useState('');
+  // const [selectedDate, setSelectedDate] = useState(
+  // date.toISOString().split('T')[0]
+  // );
   const [partyCreated, setPartyCreated] = useState('');
 
   const { user } = useContext(userContext);
 
-  const handleDateChange = (e) => {
-    const startPartyValuesCopy = { ...startPartyValues };
-    console.log(e.target.value);
-    const { value, name } = e.target;
-    startPartyValuesCopy['userId'] = user.id;
-    startPartyValuesCopy['username'] = user.username;
-    startPartyValuesCopy[name] = value;
-    setSelectedDate(value);
-    setStartPartyValues(startPartyValuesCopy);
-  };
+  // const handleDateChange = (e) => {
+  // const startPartyValuesCopy = { ...startPartyValues };
+  // console.log(e.target.value);
+  // const { value, name } = e.target;
+  // startPartyValuesCopy['userId'] = user.id;
+  // startPartyValuesCopy['username'] = user.username;
+  // startPartyValuesCopy[name] = value;
+  // // setSelectedDate(value);
+  // setStartPartyValues(startPartyValuesCopy);
+  // };
 
   const handleCreateParty = async (e) => {
     e.preventDefault();
+
+    const partyData = { userId: user.id, username: user.username };
+
     try {
-      const response = await axios.post(startPartyUrl, startPartyValues, {
+      const response = await axios.post(startPartyUrl, partyData, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem('token'),
         },
       });
+
       const partyCreated = response.data;
       localStorage.setItem('party', JSON.stringify(partyCreated));
       setPartyCreated(partyCreated.partyId);
+      window.location = `/start-party/select/id=:${partyCreated.partyId}`;
     } catch (err) {
       console.error(err);
     }
@@ -64,9 +69,9 @@ export default function StartParty() {
             A party always starts when you're here, take the lead
           </p>
         </div>
-        <h3 className='startaparty-when'>When is your Party happening?</h3>
+        <h3 className='startaparty-when'>Are you ready partyyyyyyy?</h3>
         <div className='startaparty-form'>
-          <Grid item xs={11}>
+          {/* <Grid item xs={11}>
             <input
               type='date'
               id='start'
@@ -75,7 +80,7 @@ export default function StartParty() {
               min={date.toISOString().split('T')[0]}
               onChange={handleDateChange}
             />
-          </Grid>
+          </Grid> */}
           <Button
             variant='contained'
             color='secondary'

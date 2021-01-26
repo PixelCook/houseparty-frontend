@@ -1,40 +1,38 @@
-.startaparty{
-    font-size: 20.7638px !important;
-    padding-left: 10rem;
+.startaparty {
+  font-size: 20.7638px !important;
+  padding-left: 10rem;
 }
 
-
-.startaparty-form{
-    background-color: transparent;
+.startaparty-form {
+  background-color: transparent;
 }
 
-.startaparty-msg{
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 15rem;
-    color: #160B41;
-    text-align: center;
+.startaparty-msg {
+  margin-top: 98px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 15rem;
+  color: #160b41;
+  text-align: center;
 }
 
-.startaparty-when{
-    font-size: 16px;
-    color: #A60744;
-    margin-left: 4.7rem;
+.startaparty-when {
+  font-size: 16px;
+  color: #a60744;
+  margin-left: 4.7rem;
 }
 
-.startaparty-form{
-    margin-left: 8rem;
-
+.startaparty-form {
+  margin-left: 8rem;
 }
 
-.createdParty{
-    margin-left: 7rem;
-    margin-top: 1rem;
-    width: 50%;
-    color: #170940
+.createdParty {
+  margin-left: 7rem;
+  margin-top: 1rem;
+  width: 50%;
+  color: #170940;
 }
 
 .partyId {
-    font-weight: bold;
-
+  font-weight: bold;
 }
