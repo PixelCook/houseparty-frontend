@@ -22,7 +22,7 @@ const PlaylistCard = (props) => {
   const handleClick = async (e) => {
     console.log(e.target.value, startPartyUrl, party.partyId);
     try {
-      const playlistAdded = await axios.post(`${startPartyUrl}/${party.partyId}`, e.target.value)
+      const playlistAdded = await axios.post(`${startPartyUrl}/${party.partyId}/${e.target.value}`)
       alert(playlistAdded.data)
       window.location = `/playlist/id=${props.elData.id}`
     } catch (err) {
