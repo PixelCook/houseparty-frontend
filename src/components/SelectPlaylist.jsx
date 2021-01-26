@@ -1,10 +1,20 @@
 import PlaylistList from './PlaylistList';
+import background from "../DesignImages/6.svg"
 
 const SelectPlaylist = () => {
   return (
     <>
-      <h1>Select you'r play list!</h1>
+     <div
+          className="background"
+          style={{
+            backgroundImage: `url(${background})`,
+            backgroundRepeat: "no-repeat",
+            height: "100vh",
+            backgroundSize: "100% 100%",
+          }}
+        >
       <PlaylistList />
+      </div>
     </>
   );
 };
