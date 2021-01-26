@@ -45,7 +45,7 @@ function App() {
           <Navbar />
           <Router>
             <Switch>
-              <Route path='/home' component={Home} /> PlayListPage
+              <Route path='/home' component={Home} />
               <Route path='/profile' component={Profile} />
               <Route path='/playlistpage' component={PlayListPage} />
               <Route path='/playlist/id=:id' component={PlatlistPage} />

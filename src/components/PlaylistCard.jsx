@@ -3,7 +3,7 @@ import { Card } from '@material-ui/core';
 import Image from 'material-ui-image';
 import Box from '@material-ui/core/Box';
 import axios from 'axios';
-import { joinPartyUrl } from '../utils/config'
+import { startPartyUrl } from '../utils/config'
 
 const PlaylistCard = (props) => {
   const showPlayListImage = () => {
@@ -20,9 +20,11 @@ const PlaylistCard = (props) => {
 
 
   const handleClick = async (e) => {
+    console.log(e.target.value, startPartyUrl, party.partyId);
     try {
-      const playlistAssigned = await axios.post(`${joinPartyUrl}/${party.partyId}`, e.target.value)
-      alert(playlistAssigned.data)
+      const playlistAdded = await axios.post(`${startPartyUrl}/${party.partyId}`, e.target.value)
+      alert(playlistAdded.data)
+      window.location = `/playlist/id=${props.elData.id}`
     } catch (err) {
       console.log(err);
     }
