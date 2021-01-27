@@ -1,57 +1,80 @@
-import { useEffect, useState } from "react";
-import queryString from "query-string";
-import { DataGrid } from "@material-ui/data-grid";
+import { useEffect, useState } from 'react';
+import queryString from 'query-string';
 
-import { getPlaylistMusic } from "../lib/spotifyApi";
-import "../CSS/table.css";
+import { getPlaylistMusic, deleteSong } from '../lib/spotifyApi';
+import '../CSS/table.css';
+import MaterialTable from 'material-table';
 
 const PlatlistPage = () => {
-  const [musicList, setMusicList] = useState([]);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const parsedHash = queryString.parse(window.location.pathname);
+    console.log(parsedHash);
 
     getPlaylistMusic(Object.values(parsedHash)[0]).then((response) => {
-      setMusicList(response.data.items);
+      const musicList = response.data.items;
+
+      musicList.forEach((song, index) => {
+        const addData = {
+          id: index + 1,
+          artists: song.track.artists[0].name,
+          album: song.track.album.name,
+          songName: song.track.name,
+          songId: song.track.id,
+        };
+
+        setData((data) => [...data, addData]);
+      });
+
       setLoading(false);
     });
   }, []);
 
   const createTable = () => {
     const columns = [
-      { field: "id", headerName: "ID", width: 70, align: "center" },
+      { field: 'id', title: 'ID' },
+      { field: 'artists', title: 'Artists' },
       {
-        field: "songName",
-        headerName: "Song name",
-        width: 287,
+        field: 'album',
+        title: 'Album',
       },
-      { field: "artists", headerName: "Artists", width: 287, align: "center" },
       {
-        field: "album",
-        headerName: "Album",
-        width: 287,
+        field: 'songName',
+        title: 'Song name',
       },
     ];
 
-    const rows = [];
-
-    musicList.forEach((song, index) => {
-      rows.push({
-        id: index + 1,
-        songName: song.track.name,
-        artists: song.track.artists[0].name,
-        album: song.track.album.name,
-      });
-    });
-
     return (
-      <div className="table">
-        <DataGrid
-          rows={rows}
+      <div className='table'>
+        <MaterialTable
+          title='Editable Preview'
           columns={columns}
-          pageSize={3}
-          checkboxSelection
+          data={data}
+          editable={{
+            onRowDelete: (oldData) =>
+              new Promise((resolve, reject) => {
+                setTimeout(async () => {
+                  const dataDelete = [...data];
+                  const index = oldData.tableData.id;
+                  const playlistId = Object.values(
+                    queryString.parse(window.location.pathname)
+                  )[0];
+
+                  console.log();
+                  console.log(data[index]);
+                  console.log();
+
+                  await deleteSong(playlistId, data[index].songId);
+
+                  dataDelete.splice(index, 1);
+                  setData([...dataDelete]);
+
+                  resolve();
+                }, 1000);
+              }),
+          }}
         />
       </div>
     );
