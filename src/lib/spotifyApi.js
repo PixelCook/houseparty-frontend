@@ -1,23 +1,24 @@
 import axios from 'axios';
-import { spotifyToken } from './url';
+import { spotifyToken, spotifyDeleteSong } from './url';
 import cookie from 'react-cookies';
 
 const deleteSong = (playlistId, songId) => {
   const localSpotify = cookie.load('spotifyToken');
+  const localToken = localStorage.getItem('token');
 
-  console.log(playlistId);
-  console.log(songId);
-
-  return axios.delete(
-    `https://api.spotify.com/v1/playlists/${playlistId}`,
-    { public: false, collaborative: true },
-    {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `${localSpotify.token_type} ${localSpotify.access_token}`,
-      },
-    }
-  );
+  axios({
+    method: 'DELETE',
+    url: spotifyDeleteSong,
+    headers: {
+      'Content-Type': 'application/json',
+      spotifyAuthorization: `${localSpotify.token_type} ${localSpotify.access_token}`,
+      authorization: localToken,
+    },
+    data: {
+      playlistId,
+      songId,
+    },
+  });
 };
 
 const changePlaylistToCpllaborative = (playlistId) => {
