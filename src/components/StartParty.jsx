@@ -1,10 +1,10 @@
-import React, { useState, useContext } from 'react';
-import startparty from '../DesignImages/2.svg';
-import { Grid, Button } from '@material-ui/core';
-import '../CSS/startparty.css';
-import userContext from '../context/userContext';
-import axios from 'axios';
-import { startPartyUrl } from '../utils/config';
+import React, { useState, useContext } from "react";
+import startparty from "../DesignImages/2.svg";
+import { Grid, Button } from "@material-ui/core";
+import "../CSS/startparty.css";
+import userContext from "../context/userContext";
+import axios from "axios";
+import { startPartyUrl } from "../utils/config";
 
 export default function StartParty() {
   // const date = new Date();
@@ -12,7 +12,7 @@ export default function StartParty() {
   // const [selectedDate, setSelectedDate] = useState(
   // date.toISOString().split('T')[0]
   // );
-  const [partyCreated, setPartyCreated] = useState('');
+  const [partyCreated, setPartyCreated] = useState("");
 
   const { user } = useContext(userContext);
 
@@ -35,13 +35,13 @@ export default function StartParty() {
     try {
       const response = await axios.post(startPartyUrl, partyData, {
         headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem('token'),
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("token"),
         },
       });
 
       const partyCreated = response.data;
-      localStorage.setItem('party', JSON.stringify(partyCreated));
+      localStorage.setItem("party", JSON.stringify(partyCreated));
       setPartyCreated(partyCreated.partyId);
       window.location = `/start-party/select/id=:${partyCreated.partyId}`;
     } catch (err) {
@@ -50,27 +50,26 @@ export default function StartParty() {
   };
 
   return (
-    <Grid container justify='space-around' spacing={3}>
+    <Grid container justify="space-around" spacing={3}>
       <div
-        className='background'
+        className="background"
         style={{
           backgroundImage: `url(${startparty})`,
-          backgroundRepeat: 'no-repeat',
-          height: '100vh',
-          backgroundSize: '100% 100%',
+          backgroundRepeat: "no-repeat",
+          height: "100vh",
+          backgroundSize: "100% 100%",
         }}
       >
         <div>
           {/* <h1 className='startaparty' style={{ color: '#F90040' }}>
             Throw A Party
           </h1> */}
-          <p className='startaparty-msg'>
-            {' '}
+          <p className="startaparty-msg">
+            {" "}
             A party always starts when you're here, take the lead
           </p>
         </div>
-        <h3 className='startaparty-when'>Are you ready partyyyyyyy?</h3>
-        <div className='startaparty-form'>
+        <div className="startaparty-form">
           {/* <Grid item xs={11}>
             <input
               type='date'
@@ -82,18 +81,18 @@ export default function StartParty() {
             />
           </Grid> */}
           <Button
-            variant='contained'
-            color='secondary'
+            variant="contained"
+            color="secondary"
             onClick={handleCreateParty}
           >
             Create Party
           </Button>
         </div>
         {partyCreated && (
-          <div className='createdParty'>
-            {' '}
+          <div className="createdParty">
+            {" "}
             You have created a party! It's ID number is
-            <div className='partyId'>{partyCreated}</div>
+            <div className="partyId">{partyCreated}</div>
           </div>
         )}
       </div>

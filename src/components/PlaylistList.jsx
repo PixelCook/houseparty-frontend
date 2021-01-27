@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 // import jwt_decode from 'jwt-decode';
-import { getProfilePlayList } from '../lib/spotifyApi';
-import PlaylistCard from './PlaylistCard';
+import { getProfilePlayList } from "../lib/spotifyApi";
+import PlaylistCard from "./PlaylistCard";
 
 const PlaylistList = () => {
   const [spotifyPlaylist, setSpotifyPlaylist] = useState([]);
@@ -10,7 +10,7 @@ const PlaylistList = () => {
   useEffect(() => {
     getProfilePlayList().then((response) => {
       setSpotifyPlaylist(response.data.items);
-      console.log(response)
+      console.log(response);
       console.log(spotifyPlaylist);
       setLoader(false);
     });
@@ -18,11 +18,11 @@ const PlaylistList = () => {
 
   const mapPlaylist = (data) => {
     return (
-      <ul>
+      <div>
         {data.map((el) => {
           return <PlaylistCard key={el.id} elData={el} />;
         })}
-      </ul>
+      </div>
     );
   };
 
