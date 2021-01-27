@@ -18,11 +18,11 @@ const PlaylistList = () => {
 
   const mapPlaylist = (data) => {
     return (
-      <div>
+      <>
         {data.map((el) => {
           return <PlaylistCard key={el.id} elData={el} />;
         })}
-      </div>
+      </>
     );
   };
 

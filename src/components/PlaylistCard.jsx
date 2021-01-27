@@ -6,6 +6,7 @@ import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import { startPartyUrl } from "../utils/config";
 import Button from "@material-ui/core/Button";
+import "../CSS/playlistcard.css"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -18,10 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
   gridList: {
     width: 500,
-    height: 450,
-  },
-  title: {
-    color: "green",
+    height: 250,
   },
 }));
 
@@ -87,19 +85,29 @@ const PlaylistCard = (props) => {
 
 
     <div className={classes.root}>
-      <GridList cellHeight={180} className={classes.gridList}>
-        <GridListTile
+      <GridList cellHeight={200} className={classes.gridList}>
+        {/* <GridListTile
           key="Subheader"
           cols={1}
-          style={{ height: "auto" }}
-        ></GridListTile>
+          style={{ height: "auto" }} 
+        ></GridListTile> */}
         <GridListTile key={props.elData.id}>
           <img src={showPlayListImage()} alt={props.elData.name} />
           <GridListTileBar title={props.elData.name} />
+          
         </GridListTile>
-        {selectPath && selectButton()}
+        
         ))
+        <Button
+        classname="select-button"
+        variant="contained"
+        value={props.elData.id}
+        onClick={(e) => handleClick(e)}
+      >
+        Select this playlist
+      </Button>
       </GridList>
+      
     </div>
   );
 };
