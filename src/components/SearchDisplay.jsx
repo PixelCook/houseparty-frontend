@@ -1,12 +1,13 @@
-import React, { useContext } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import IconButton from '@material-ui/core/IconButton';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
-import AuthContext from '../context/userContext';
-import { addSong } from '../lib/spotifyApi';
+import React, { useContext } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import GridList from "@material-ui/core/GridList";
+import GridListTile from "@material-ui/core/GridListTile";
+import GridListTileBar from "@material-ui/core/GridListTileBar";
+import IconButton from "@material-ui/core/IconButton";
+import StarBorderIcon from "@material-ui/icons/StarBorder";
+import AuthContext from "../context/userContext";
+import { addSong } from "../lib/spotifyApi";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -26,8 +27,6 @@ const useStyles = makeStyles((theme) => ({
 export default function TitlebarGridList(props) {
   const { user } = useContext(AuthContext);
   const classes = useStyles();
-  console.log(props.searchResults.length);
-  const party = JSON.parse(localStorage.getItem('party'));
   if (props.openSearch === false) {
     return <a href='#'></a>;
   }
@@ -51,9 +50,7 @@ export default function TitlebarGridList(props) {
                 actionIcon={
                   <IconButton
                     aria-label={`star ${results.album.name}`}
-                    onClick={() => {
-                      addSong(party.playlistId, results.id);
-                    }}
+                    onClick={addSong(user, results.id)}
                   >
                     <StarBorderIcon className={classes.title} />
                   </IconButton>
