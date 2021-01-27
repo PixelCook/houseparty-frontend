@@ -36,28 +36,36 @@ const PlaylistCard = (props) => {
     }
   };
 
-  const selectButton = () => {
-    return (
-      <Button
-        className='select-button'
-        variant='contained'
-        value={props.elData.id}
-        onClick={(e) => handleClick(e)}
-      >
-        Select this playlist
-      </Button>
-    );
-  };
+  // const selectButton = () => {
+  //   return (
+  //     <Button
+  //       className='select-button'
+  //       variant='contained'
+  //       value={props.elData.id}
+  //       onClick={(e) => handleClick(e)}
+  //     >
+  //       Select this playlist
+  //     </Button>
+  //   );
+  // };
 
-  const handleClick = async (e) => {
-    const playlistId = e.target.value;
+  // console.log(props.elData.id);
+
+  const handleClick = async (e, playlistId) => {
     const party = JSON.parse(localStorage.getItem('party'));
     try {
       const playlistAdded = await axios.post(
         `${startPartyUrl}/${party.partyId}`,
         { playlistId }
       );
-      alert(playlistAdded.data);
+
+      console.log(playlistAdded.data.updatedeParty);
+
+      localStorage.setItem(
+        'party',
+        JSON.stringify(playlistAdded.data.updatedeParty)
+      );
+
       window.location = `/playlist/id=${props.elData.id}`;
     } catch (err) {
       alert(err);
@@ -92,8 +100,7 @@ const PlaylistCard = (props) => {
         <Button
           className='select-button'
           variant='contained'
-          value={props.elData.id}
-          onClick={(e) => handleClick(e)}
+          onClick={(e) => handleClick(e, props.elData.id)}
         >
           Select this playlist
         </Button>
