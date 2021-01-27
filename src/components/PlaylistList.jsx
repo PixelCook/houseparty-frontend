@@ -29,7 +29,7 @@ const PlaylistList = () => {
   if (!loader) {
     return mapPlaylist(spotifyPlaylist);
   } else {
-    return <h1>Loading...</h1>;
+    return <h1 style={{color: "white"}}>Loading...</h1>;
   }
 };
 
