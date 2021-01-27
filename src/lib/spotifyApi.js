@@ -7,7 +7,7 @@ const changePlaylistToCpllaborative = (playlistId) => {
 
   return axios.put(
     `https://api.spotify.com/v1/playlists/${playlistId}`,
-    { collaborative: true },
+    { public: false, collaborative: true },
     {
       headers: {
         'Content-Type': 'application/json',
