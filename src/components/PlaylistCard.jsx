@@ -51,35 +51,28 @@ const PlaylistCard = (props) => {
   };
 
   const handleClick = async (e) => {
+    const playlistId = e.target.value
     const party = JSON.parse(localStorage.getItem("party"));
-
     try {
-      await axios({
-        method: "post",
-        url: `${startPartyUrl}/${party.partyId}`,
-        data: {
-          playlistId: e.target.value,
-        },
-        headers: {
-          authorization: localStorage.getItem("token"),
-        },
-      }).then(async (response) => {
-        localStorage.setItem(
-          "party",
-          JSON.stringify(response.data.updatedeParty)
-        );
-
-        const playlistIdToCol = JSON.parse(localStorage.getItem('party'))
-          .playlistId;
-
-        // await changePlaylistToCpllaborative(playlistIdToCol);
-
-        window.location = `/playlist/id=${props.elData.id}`;
-      });
+      const playlistAdded = await axios.post(`${startPartyUrl}/${party.partyId}`, { playlistId });
+      alert(playlistAdded.data)
+      window.location = `/playlist/id=${props.elData.id}`
     } catch (err) {
-      console.error(err);
+      alert(err)
     }
-  };
+  }
+
+  // const playlistIdToCol = JSON.parse(localStorage.getItem('party'))
+  //   .playlistId;
+
+  // // await changePlaylistToCpllaborative(playlistIdToCol);
+
+  // window.location = `/playlist/id=${props.elData.id}`;
+  // });
+  // } catch (err) {
+  //   console.error(err);
+  // }
+  // };
 
   return (
 
@@ -94,20 +87,20 @@ const PlaylistCard = (props) => {
         <GridListTile key={props.elData.id}>
           <img src={showPlayListImage()} alt={props.elData.name} />
           <GridListTileBar title={props.elData.name} />
-          
+
         </GridListTile>
-        
+
         ))
         <Button
-        classname="select-button"
-        variant="contained"
-        value={props.elData.id}
-        onClick={(e) => handleClick(e)}
-      >
-        Select this playlist
+          classname="select-button"
+          variant="contained"
+          value={props.elData.id}
+          onClick={(e) => handleClick(e)}
+        >
+          Select this playlist
       </Button>
       </GridList>
-      
+
     </div>
   );
 };
