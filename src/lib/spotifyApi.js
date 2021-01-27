@@ -31,6 +31,7 @@ const getSearchData = (searchValue) => {
 };
 
 const addSong = (playlist_id, songId) => {
+  console.log(playlist_id)
   const localSpotify = cookie.load('spotifyToken');
 
   return axios.post(
