@@ -36,21 +36,6 @@ const PlaylistCard = (props) => {
     }
   };
 
-  // const selectButton = () => {
-  //   return (
-  //     <Button
-  //       className='select-button'
-  //       variant='contained'
-  //       value={props.elData.id}
-  //       onClick={(e) => handleClick(e)}
-  //     >
-  //       Select this playlist
-  //     </Button>
-  //   );
-  // };
-
-  // console.log(props.elData.id);
-
   const handleClick = async (e, playlistId) => {
     const party = JSON.parse(localStorage.getItem('party'));
     try {
@@ -72,26 +57,10 @@ const PlaylistCard = (props) => {
     }
   };
 
-  // const playlistIdToCol = JSON.parse(localStorage.getItem('party'))
-  //   .playlistId;
-
-  // // await changePlaylistToCpllaborative(playlistIdToCol);
-
-  // window.location = `/playlist/id=${props.elData.id}`;
-  // });
-  // } catch (err) {
-  //   console.error(err);
-  // }
-  // };
 
   return (
     <div className={classes.root}>
       <GridList cellHeight={200} className={classes.gridList}>
-        {/* <GridListTile
-          key="Subheader"
-          cols={1}
-          style={{ height: "auto" }} 
-        ></GridListTile> */}
         <GridListTile key={props.elData.id}>
           <img src={showPlayListImage()} alt={props.elData.name} />
           <GridListTileBar title={props.elData.name} />

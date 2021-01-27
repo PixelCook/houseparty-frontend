@@ -16,17 +16,6 @@ export default function StartParty() {
 
   const { user } = useContext(userContext);
 
-  // const handleDateChange = (e) => {
-  // const startPartyValuesCopy = { ...startPartyValues };
-  // console.log(e.target.value);
-  // const { value, name } = e.target;
-  // startPartyValuesCopy['userId'] = user.id;
-  // startPartyValuesCopy['username'] = user.username;
-  // startPartyValuesCopy[name] = value;
-  // // setSelectedDate(value);
-  // setStartPartyValues(startPartyValuesCopy);
-  // };
-
   const handleCreateParty = async (e) => {
     e.preventDefault();
 
@@ -61,25 +50,13 @@ export default function StartParty() {
         }}
       >
         <div>
-          {/* <h1 className='startaparty' style={{ color: '#F90040' }}>
-            Throw A Party
-          </h1> */}
           <p className="startaparty-msg">
             {" "}
             A party always starts when you're here, take the lead
           </p>
         </div>
         <div className="startaparty-form">
-          {/* <Grid item xs={11}>
-            <input
-              type='date'
-              id='start'
-              name='date'
-              value={selectedDate}
-              min={date.toISOString().split('T')[0]}
-              onChange={handleDateChange}
-            />
-          </Grid> */}
+         
           <Button
             variant="contained"
             color="secondary"
