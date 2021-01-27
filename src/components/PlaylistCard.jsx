@@ -4,6 +4,7 @@ import Image from 'material-ui-image';
 import Box from '@material-ui/core/Box';
 import axios from 'axios';
 import { startPartyUrl } from '../utils/config';
+import { changePlaylistToCpllaborative } from '../lib/spotifyApi';
 
 const PlaylistCard = (props) => {
   const selectPath = window.location.pathname.includes(
@@ -41,11 +42,16 @@ const PlaylistCard = (props) => {
         headers: {
           authorization: localStorage.getItem('token'),
         },
-      }).then((response) => {
+      }).then(async (response) => {
         localStorage.setItem(
           'party',
           JSON.stringify(response.data.updatedeParty)
         );
+
+        const playlistIdToCol = JSON.parse(localStorage.getItem('party'))
+          .playlistId;
+
+        await changePlaylistToCpllaborative(playlistIdToCol);
 
         window.location = `/playlist/id=${props.elData.id}`;
       });
