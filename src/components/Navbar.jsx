@@ -9,8 +9,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import UserContext from "../context/userContext";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import {getSearchData} from "../lib/spotifyApi"
-import SearchDisplay from "../components/SearchDisplay"
+import { getSearchData } from "../lib/spotifyApi";
+import SearchDisplay from "../components/SearchDisplay";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -72,7 +72,7 @@ export default function SearchAppBar() {
   const [searchResults, setSearchResults] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const { user } = useContext(UserContext);
-  const [openSearch, setOpen] = useState(false)
+  const [openSearch, setOpen] = useState(false);
   const classes = useStyles();
 
   const handleClick = (event) => {
@@ -81,7 +81,7 @@ export default function SearchAppBar() {
 
   const handleClose = () => {
     setAnchorEl(null);
-    setOpen(false)
+    setOpen(false);
   };
 
   const handleSearch = (e) => {
@@ -91,12 +91,12 @@ export default function SearchAppBar() {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     getSearchData(searchValue).then((response) => {
-      if(response.status === 200){
-        setOpen(true)
-        console.log(response.data)
+      if (response.status === 200) {
+        setOpen(true);
+        console.log(response.data);
       }
-      setSearchResults(response.data.tracks.items)
-    })
+      setSearchResults(response.data.tracks.items);
+    });
   };
 
   if (user) {
@@ -120,17 +120,17 @@ export default function SearchAppBar() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <a href="/profile">
+              <a className="link" href="/profile">
                 {" "}
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
               </a>
-              <a href="/start-party">
+              <a className="link" href="/start-party">
                 <MenuItem onClick={handleClose}>Throw a Party</MenuItem>
               </a>
-              <a href="/join">
+              <a className="link" href="/join">
                 <MenuItem onClick={handleClose}>Join a Party</MenuItem>
               </a>
-              <a href="/logout">
+              <a className="link" href="/logout">
                 <MenuItem onClick={handleClose}>Logout</MenuItem>
               </a>
             </Menu>
@@ -150,14 +150,10 @@ export default function SearchAppBar() {
                   onChange={handleSearch}
                 />
               </form>
-              
             </div>
           </Toolbar>
         </AppBar>
-        <SearchDisplay
-              searchResults = {searchResults}
-              openSearch = {openSearch}
-               />
+        <SearchDisplay searchResults={searchResults} openSearch={openSearch} />
       </div>
     );
   }

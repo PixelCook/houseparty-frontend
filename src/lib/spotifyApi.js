@@ -31,13 +31,14 @@ const getSearchData = (searchValue) => {
 };
 
 const addSong = (playlist_id, songId) => {
-  const localSpotify = cookie.load("spotifyToken");
+  const localSpotify = cookie.load('spotifyToken');
 
-  return axios.put(
-    `https://api.spotify.com/v1/playlists/${playlist_id}/tracks?uris=spotify%3Atrack%3A${songId}`,
+  return axios.post(
+    `https://api.spotify.com/v1/playlists/${playlist_id}/tracks?uris=spotify%3Atrack%3A${songId}`, {},
     {
       headers: {
-        "Content-Type": "application/json",
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
         Authorization: `${localSpotify.token_type} ${localSpotify.access_token}`,
       },
     }
@@ -47,12 +48,13 @@ const addSong = (playlist_id, songId) => {
 const getProfileData = () => {
   const localSpotify = cookie.load("spotifyToken");
 
-  return axios.get("https://api.spotify.com/v1/me", {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `${localSpotify.token_type} ${localSpotify.access_token}`,
-    },
-  });
+  return axios.get('https://api.spotify.com/v1/me',
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `${localSpotify.token_type} ${localSpotify.access_token}`,
+      },
+    });
 };
 
 const getProfilePlayList = () => {
