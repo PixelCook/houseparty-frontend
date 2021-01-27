@@ -49,7 +49,15 @@ const PlatlistPage = () => {
 
     return (
       <div className="table">
-        <p style={{color: "white"}}>Party Id: {party.partyId}</p>
+        <p style={{ color: "white" }}>Party Id: {party.partyId}</p>
+        <iframe
+          src={`https://open.spotify.com/embed/playlist/${party.playlistId}`}
+          width="250"
+          height="80"
+          frameborder="0"
+          allowtransparency="true"
+          allow="encrypted-media"
+        ></iframe>
         <MaterialTable
           title={``}
           columns={columns}
@@ -63,16 +71,9 @@ const PlatlistPage = () => {
                   const playlistId = Object.values(
                     queryString.parse(window.location.pathname)
                   )[0];
-
-                  console.log();
-                  console.log(data[index]);
-                  console.log();
-
                   await deleteSong(playlistId, data[index].songId);
-
                   dataDelete.splice(index, 1);
                   setData([...dataDelete]);
-
                   resolve();
                 }, 1000);
               }),
@@ -85,7 +86,7 @@ const PlatlistPage = () => {
   if (!loading) {
     return createTable();
   } else {
-    return <h1>Loading...</h1>;
+    return <h1 style={{ color: "white" }}>Loading...</h1>;
   }
 };
 
