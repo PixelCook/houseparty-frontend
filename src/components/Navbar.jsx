@@ -11,7 +11,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { getSearchData } from "../lib/spotifyApi";
 import SearchDisplay from "../components/SearchDisplay";
-
+import "../CSS/navbar.css"
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -133,6 +133,9 @@ export default function SearchAppBar() {
               <a className="link" href="/logout">
                 <MenuItem onClick={handleClose}>Logout</MenuItem>
               </a>
+              <a className="link" href="/About">
+                <MenuItem onClick={handleClose}>About Us</MenuItem>
+              </a>
             </Menu>
 
             <div className={classes.search}>
@@ -179,7 +182,7 @@ export default function SearchAppBar() {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <a style={{ textDecoration: "none" }} href="signin">
+            <a className="link" href="signin">
               <MenuItem onClick={handleClose}>SignIn</MenuItem>
             </a>
           </Menu>
