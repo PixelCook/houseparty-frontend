@@ -74,7 +74,7 @@ const PlaylistCard = (props) => {
         const playlistIdToCol = JSON.parse(localStorage.getItem('party'))
           .playlistId;
 
-        await changePlaylistToCpllaborative(playlistIdToCol);
+        // await changePlaylistToCpllaborative(playlistIdToCol);
 
         window.location = `/playlist/id=${props.elData.id}`;
       });
@@ -84,17 +84,7 @@ const PlaylistCard = (props) => {
   };
 
   return (
-    //     <>
-    //       <Card
-    //         onClick={() => (window.location = `/playlist/id=${props.elData.id}`)}
-    //       >
-    //         <h1>{props.elData.name}</h1>
-    //         {props.elData.images.length > 0 && showPlayListImage()}
-    //       </Card>
-    //       {selectPath && selectButton()}
-    //     </>
-    //   );
-    // };
+
 
     <div className={classes.root}>
       <GridList cellHeight={180} className={classes.gridList}>
