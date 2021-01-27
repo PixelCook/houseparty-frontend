@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
-import queryString from 'query-string';
+import { useEffect, useState } from "react";
+import queryString from "query-string";
 
-import { getPlaylistMusic, deleteSong } from '../lib/spotifyApi';
-import '../CSS/table.css';
-import MaterialTable from 'material-table';
+import { getPlaylistMusic, deleteSong } from "../lib/spotifyApi";
+import "../CSS/table.css";
+import MaterialTable from "material-table";
 
 const PlatlistPage = () => {
+  const party = JSON.parse(localStorage.getItem("party"));
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -34,22 +35,23 @@ const PlatlistPage = () => {
 
   const createTable = () => {
     const columns = [
-      { field: 'id', title: 'ID' },
-      { field: 'artists', title: 'Artists' },
+      { field: "id", title: "ID" },
       {
-        field: 'album',
-        title: 'Album',
+        field: "songName",
+        title: "Song",
       },
+      { field: "artists", title: "Artist" },
       {
-        field: 'songName',
-        title: 'Song name',
+        field: "album",
+        title: "Album",
       },
     ];
 
     return (
-      <div className='table'>
+      <div className="table">
+        <p style={{color: "white"}}>Party Id: {party.partyId}</p>
         <MaterialTable
-          title='Editable Preview'
+          title={``}
           columns={columns}
           data={data}
           editable={{
