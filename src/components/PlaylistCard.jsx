@@ -30,7 +30,6 @@ const PlaylistCard = (props) => {
 
   const handleClick = async (e) => {
     const party = JSON.parse(localStorage.getItem('party'));
-
     try {
       await axios({
         method: 'post',
