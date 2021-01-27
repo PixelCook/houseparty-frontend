@@ -22,6 +22,7 @@ import PlatlistPage from './components/PlatlistPage';
 import cookie from 'react-cookies';
 import PlayListPage from './pages/PlayListPage';
 import SelectPlaylist from './components/SelectPlaylist';
+import AboutUs from "./components/AboutUs"
 
 function App() {
   const [user, setUser] = useState();
@@ -50,12 +51,12 @@ function App() {
               <Route path='/profile' component={Profile} />
               <Route path='/playlistpage' component={PlayListPage} />
               <Route path='/playlist/id=:id' component={PlatlistPage} />
-              {/*  <Route path='/connect' /> do we need it? */}
               <Route path='/login' component={Login} />
               <Route path='/join' component={JoinParty} />
               <Route path='/logout' component={LogOut} />
               <Route path='/signin' component={Signin} />
               <Route exact path='/start-party' component={StartParty} />
+              <Route exact path='/about' component={AboutUs} />
               <Route
                 path='/start-party/select/id=:id'
                 component={SelectPlaylist}
