@@ -31,7 +31,10 @@ const getSearchData = (searchValue) => {
 };
 
 const addSong = (playlist_id, songId) => {
+  console.log("playlist", playlist_id, "songid", songId);
   const localSpotify = cookie.load('spotifyToken');
+  console.log("token", localSpotify);
+
   return axios.post(
     `https://api.spotify.com/v1/playlists/${playlist_id}/tracks?uris=spotify%3Atrac${songId}`,
     {
