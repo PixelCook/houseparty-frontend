@@ -52,6 +52,7 @@ const PlaylistCard = (props) => {
 
   const handleClick = async (e) => {
     const playlistId = e.target.value
+    console.log(playlistId)
     const party = JSON.parse(localStorage.getItem("party"));
     try {
       const playlistAdded = await axios.post(`${startPartyUrl}/${party.partyId}`, { playlistId });
