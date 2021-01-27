@@ -51,8 +51,8 @@ export default function TitlebarGridList(props) {
                 actionIcon={
                   <IconButton
                     aria-label={`star ${results.album.name}`}
-                    onClick={() => {
-                      addSong(party.playlistId, results.id);
+                    onClick={async () => {
+                      await addSong(party.playlistId, results.id);
                     }}
                   >
                     <StarBorderIcon className={classes.title} />
