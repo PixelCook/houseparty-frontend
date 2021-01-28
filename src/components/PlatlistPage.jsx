@@ -51,8 +51,9 @@ const PlatlistPage = () => {
       <div className="table">
         <p style={{ color: "white" }}>Party Id: {party.partyId}</p>
         <iframe
+          title="player"
           src={`https://open.spotify.com/embed/playlist/${party.playlistId}`}
-          width="250"
+          width="300"
           height="80"
           frameborder="0"
           allowtransparency="true"
